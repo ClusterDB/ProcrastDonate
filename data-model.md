@@ -55,8 +55,9 @@ Stores all tasks, including completed tasks.
       }
     ],
     deadlineDate: <datetime>,
+    donationAmount: <number>,
     donateOnFailure: <boolean>,
-    charities: [<ObjectID>],
+    charity: <ObjectID>,
     tags: [<string>],
 }
 ```
@@ -264,8 +265,8 @@ Parameters:
   depending on the value of `sort-by`. Used for pagination.
 
 ### POST
-Creates a new sponsorship for the given user. The body of the request must contain the task id being sponsored, the
-charity or charities being used, and the dollar amount at stake.
+Creates a new sponsorship for the given user. The body of the request must contain the task id being sponsored and the 
+dollar amount at stake.
 
 ## /users/\<username\>/activity
 Retrieves the timeline of recent activity by this user. This includes entries for any of the above event types
