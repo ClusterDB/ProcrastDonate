@@ -5,27 +5,24 @@
 //  Created by Andrew Morgan on 23/02/2021.
 //
 
+import SwiftUI
 import RealmSwift
 
-@objcMembers class Charity: Object, ObjectKeyIdentifiable {
-    dynamic var _id = ObjectId()
-    dynamic var name = ""
-    dynamic var charityDescription = "" // Can't use "description" as it's used by the base protocol
-    dynamic var website = ""
+class Charity: ObservableObject, Identifiable {
+    @Published var _id = ObjectId()
+    @Published var name = ""
+    @Published var description = ""
+    @Published var website = ""
 
     convenience init(
         _id: ObjectId = ObjectId(),
         name: String,
-        charityDescription: String,
+        description: String,
         website: String
     ) {
         self.init()
         self._id = _id
         self.name = name
-        self.charityDescription = charityDescription
-    }
-    
-    override static func primaryKey() -> String? {
-        return "_id"
+        self.description = description
     }
 }

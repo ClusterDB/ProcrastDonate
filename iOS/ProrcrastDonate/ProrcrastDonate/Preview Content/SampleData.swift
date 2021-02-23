@@ -29,7 +29,7 @@ extension User {
         email = user.email
         password = user.password
         bio = user.bio
-        friends.append(objectsIn: user.friends)
+        friends.append(contentsOf: user.friends)
     }
 }
 
@@ -37,7 +37,7 @@ extension User: Samplable {
     static var samples: [User] { [sample, sample2, sample3] }
     static var sample: User {
         User(
-            _id: ObjectId("rod-id"),
+            _id: ObjectId("f0d456789012345678901234"),
             userName: "rod",
             displayName: "Rod",
             email: "rod@contoso.com",
@@ -47,7 +47,7 @@ extension User: Samplable {
     }
     static var sample2: User {
         User(
-            _id: ObjectId("jane-id"),
+            _id: ObjectId("1ade56789012345678901234"),
             userName: "jane",
             displayName: "Jane",
             email: "jane@contoso.com",
@@ -57,7 +57,7 @@ extension User: Samplable {
     }
     static var sample3: User {
         User(
-            _id: ObjectId("freddy-id"),
+            _id: ObjectId("ffedde789012345678901234"),
             userName: "freddy",
             displayName: "Freddy",
             email: "freddy@contoso.com",
@@ -119,7 +119,7 @@ extension Charity {
         self.init()
         _id = charity._id
         name = charity.name
-        charityDescription = charity.charityDescription
+        description = charity.description
         website = charity.website
     }
 }
@@ -128,23 +128,23 @@ extension Charity: Samplable {
     static var samples: [Charity] { [sample, sample2, sample3] }
     static var sample: Charity {
         Charity(
-            _id: ObjectId("save-the-cats-id"),
+            _id: ObjectId("cad456789012345678901234"),
             name: "Save The Cats",
-            charityDescription: "Looking after the furry little critters",
+            description: "Looking after the furry little critters",
             website: "https://clusterdb.com")
     }
     static var sample2: Charity {
         Charity(
-            _id: ObjectId("save-the-bats-id"),
+            _id: ObjectId("bad456789012345678901234"),
             name: "Save The Bats",
-            charityDescription: "Blocking planning applications for years",
+            description: "Blocking planning applications for years",
             website: "https://clusterdb.com")
     }
     static var sample3: Charity {
         Charity(
-            _id: ObjectId("save-the-tabs-id"),
+            _id: ObjectId("1ab456789012345678901234"),
             name: "Save The Tabs",
-            charityDescription: "Spaces are for the birds",
+            description: "Spaces are for the birds",
             website: "https://clusterdb.com")
     }
 }
@@ -154,7 +154,7 @@ extension Task {
         self.init()
         // Don't copy _id
         title = task.title
-        taskDescription = task.taskDescription
+        description = task.description
         startDate = task.startDate
         completedDate = task.completedDate
         cancelDate = task.cancelDate
@@ -163,8 +163,8 @@ extension Task {
         }
         deadlineDate = task.deadlineDate
         donateOnFailure = task.donateOnFailure
-        charities.append(objectsIn: task.charities)
-        tags.append(objectsIn: task.tags)
+        charities.append(contentsOf: task.charities)
+        tags.append(contentsOf: task.tags)
     }
 }
 
@@ -172,9 +172,9 @@ extension Task: Samplable {
     static var samples: [Task] { [sample, sample2, sample3] }
     static var sample: Task {
         Task(
-            _id: ObjectId("task1-id"),
+            _id: ObjectId("111456789012345678901234"),
             title: "Task 1",
-            taskDescription: "First task",
+            description: "First task",
             startDate: Date(),
             cancelDate: nil,
             renewals: Renewal.samples,
@@ -185,9 +185,9 @@ extension Task: Samplable {
     }
     static var sample2: Task {
         Task(
-            _id: ObjectId("task2-id"),
+            _id: ObjectId("222456789012345678901234"),
             title: "Task 2",
-            taskDescription: "Second task",
+            description: "Second task",
             startDate: Date(),
             cancelDate: nil,
             renewals: Renewal.samples,
@@ -198,9 +198,9 @@ extension Task: Samplable {
     }
     static var sample3: Task {
         Task(
-            _id: ObjectId("task3-id"),
+            _id: ObjectId("333456789012345678901234"),
             title: "Task 3 - with a longer task name than some others",
-            taskDescription: "Third task - which has a longer description than some others. Filler text here. Filler text here. ",
+            description: "Third task - which has a longer description than some others. Filler text here. Filler text here. ",
             startDate: Date().addingTimeInterval(-86400),
             cancelDate: Date(),
             renewals: [],
@@ -208,23 +208,5 @@ extension Task: Samplable {
             donateOnFailure: false,
             charities: [Charity.sample._id, Charity.sample3._id],
             tags: ["developers"])
-    }
-}
-
-extension Realm {
-    static func bootstrap(clearOldData: Bool = true) {
-        do {
-            let realm = try Realm()
-            try realm.write {
-                if clearOldData {
-                    realm.deleteAll()
-                }
-                realm.add(User.samples)
-                realm.add(Charity.samples)
-                realm.add(Task.samples)
-            }
-        } catch {
-            print("Failed to bootstrap the default realm")
-        }
     }
 }

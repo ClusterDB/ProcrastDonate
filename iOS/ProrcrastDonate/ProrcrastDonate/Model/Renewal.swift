@@ -5,18 +5,18 @@
 //  Created by Andrew Morgan on 23/02/2021.
 //
 
-import Foundation
-import RealmSwift
+import SwiftUI
 
-@objcMembers class Renewal: EmbeddedObject, ObjectKeyIdentifiable {
-    dynamic var date = Date()
-    dynamic var oldDeadline = Date()
-    dynamic var newDeadline = Date().addingTimeInterval(86400)
-    dynamic var oldAmount: Double = 0
-    dynamic var newAmount: Double = 0
-    dynamic var renewReason = ""
-    dynamic var paidOldAmount = false
-
+class Renewal: ObservableObject, Identifiable {
+    let id  = UUID().uuidString
+    @Published var date = Date()
+    @Published var oldDeadline = Date()
+    @Published var newDeadline = Date().addingTimeInterval(86400)
+    @Published var oldAmount: Double = 0
+    @Published var newAmount: Double = 0
+    @Published var renewReason = ""
+    @Published var paidOldAmount = false
+    
     convenience init(
         date: Date,
         oldDeadline: Date,

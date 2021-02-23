@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var task: Task
+    
+    init() {
+        task = Task.sample
+    }
+    
     var body: some View {
-        Text("Hello World")
+        TaskDetailsView(task: task)
     }
 }
 
