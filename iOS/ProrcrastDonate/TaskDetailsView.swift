@@ -14,6 +14,29 @@ struct TaskDetailsView: View {
     var body: some View {
         VStack {
             InputField(title: "Task Name", text: $task.title)
+            TextEditorField(title: "Task Description", text: $task.descriptionText)
+            Group {
+                CaptionLabel("Dates")
+                DatePicker(selection: $task.startDate) {
+                    Text("Start")
+                }
+                DatePicker(selection: $task.deadlineDate) {
+                    Text("Deadline")
+                }
+                if let completedDate = task.completedDate {
+                    LabelledDate(title: "Completed", date: completedDate)
+                }
+                if let cancelDate = task.cancelDate {
+                    LabelledDate(title: "Cancelled", date: cancelDate)
+                }
+            }
+            Group {
+                CaptionLabel("Donation")
+                Toggle("Make donation when task expires", isOn: $task.donateOnFailure)
+                if task.donateOnFailure {
+                    NumberInputField(title: "Donation Amount", value: $task.donationAmount)
+                }
+            }
             Spacer()
         }
         .padding()
@@ -24,7 +47,7 @@ struct TaskDetailsView: View {
 struct TaskDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            TaskDetailsView(task: .sample)
+            TaskDetailsView(task: .sample3)
                 .environmentObject(AppState())
         }
     }

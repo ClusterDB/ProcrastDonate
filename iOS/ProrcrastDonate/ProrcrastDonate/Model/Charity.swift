@@ -6,23 +6,23 @@
 //
 
 import SwiftUI
-import RealmSwift
+import SwiftBSON
 
 class Charity: ObservableObject, Identifiable {
-    @Published var _id = ObjectId()
+    @Published var _id = BSONObjectID()
     @Published var name = ""
-    @Published var description = ""
+    @Published var descriptionText = ""
     @Published var website = ""
 
     convenience init(
-        _id: ObjectId = ObjectId(),
+        _id: BSONObjectID = BSONObjectID(),
         name: String,
-        description: String,
+        descriptionText: String,
         website: String
     ) {
         self.init()
         self._id = _id
         self.name = name
-        self.description = description
+        self.descriptionText = descriptionText
     }
 }

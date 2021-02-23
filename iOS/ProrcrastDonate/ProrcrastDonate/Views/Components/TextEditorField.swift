@@ -10,40 +10,37 @@ import SwiftUI
 struct TextEditorField: View {
     let title: String
     @Binding private(set) var text: String
-    var showingSecureField = false
 
     private enum Dimensions {
+        static let maxHeight: CGFloat = 100
+        static let minHeight: CGFloat = 100
         static let noSpacing: CGFloat = 0
         static let bottomPadding: CGFloat = 16
-        static let iconSize: CGFloat = 20
     }
 
     var body: some View {
         VStack(spacing: Dimensions.noSpacing) {
-            CaptionLabel(title: title)
-            HStack(spacing: Dimensions.noSpacing) {
-                if showingSecureField {
-                    SecureField("", text: $text)
-                        .padding(.bottom, Dimensions.bottomPadding)
-                        .foregroundColor(.primary)
-                        .font(.body)
-                } else {
-                    TextField("", text: $text)
-                        .padding(.bottom, Dimensions.bottomPadding)
-                        .foregroundColor(.primary)
-                        .font(.body)
-                }
-            }
+            CaptionLabel(title)
+            TextEditor(text: $text)
+                .padding(.bottom, Dimensions.bottomPadding)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: Dimensions.minHeight, maxHeight: Dimensions.maxHeight)
+                .foregroundColor(.primary)
+                .font(.body)
         }
     }
 }
 
 struct TextEditorField_Previews: PreviewProvider {
     static var previews: some View {
-        AppearancePreviews(
+        let inputText = """
+        This is where you can edit multi-line text.
+        This is the second line.
+        This is the third.
+        """
+        
+        return AppearancePreviews(
             Group {
-                TextEditorField(title: "Input", text: .constant("Data"))
-                TextEditorField(title: "Input secure", text: .constant("Data"), showingSecureField: true)
+                TextEditorField(title: "Input", text: .constant(inputText))
             }
             .previewLayout(.sizeThatFits)
             .padding()

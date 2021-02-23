@@ -6,27 +6,27 @@
 //
 
 import SwiftUI
-import RealmSwift
+import SwiftBSON
 
 class User: ObservableObject, Identifiable {
-    @Published var _id = ObjectId()
+    @Published var _id = BSONObjectID()
     @Published var userName = ""
     @Published var displayName = ""
     @Published var email = ""
     @Published var password = "" // Should be hashed
     @Published var bio = ""
-    @Published var friends = [ObjectId]()
+    @Published var friends = [BSONObjectID]()
     
-    var id: String { _id.stringValue }
+    var id: String { _id.description }
     
     convenience init(
-        _id: ObjectId = ObjectId(),
+        _id: BSONObjectID = BSONObjectID(),
         userName: String,
         displayName: String,
         email: String,
         password: String,
         bio: String,
-        friends: [ObjectId] = []
+        friends: [BSONObjectID] = []
     ) {
         self.init()
         self._id = _id

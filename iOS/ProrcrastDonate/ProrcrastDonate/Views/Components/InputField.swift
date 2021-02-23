@@ -16,12 +16,11 @@ struct InputField: View {
     private enum Dimensions {
         static let noSpacing: CGFloat = 0
         static let bottomPadding: CGFloat = 16
-        static let iconSize: CGFloat = 20
     }
 
     var body: some View {
         VStack(spacing: Dimensions.noSpacing) {
-            CaptionLabel(title: title)
+            CaptionLabel(title)
             HStack(spacing: Dimensions.noSpacing) {
                 if showingSecureField {
                     SecureField("", text: $text)

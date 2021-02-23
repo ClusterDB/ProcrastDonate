@@ -14,8 +14,6 @@
 		0A05564E25E4FD5100E6F88B /* ProrcrastDonateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05564D25E4FD5100E6F88B /* ProrcrastDonateUITests.swift */; };
 		0A05566125E4FE7500E6F88B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05566025E4FE7500E6F88B /* ContentView.swift */; };
 		0A05566425E5009A00E6F88B /* swiftlint in Resources */ = {isa = PBXBuildFile; fileRef = 0A05566325E5009A00E6F88B /* swiftlint */; };
-		0A05566725E5023000E6F88B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05566625E5023000E6F88B /* Realm */; };
-		0A05566925E5023000E6F88B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05566825E5023000E6F88B /* RealmSwift */; };
 		0A05566B25E5044100E6F88B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05566A25E5044100E6F88B /* User.swift */; };
 		0A05566D25E5067400E6F88B /* PreviewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05566C25E5067400E6F88B /* PreviewHelpers.swift */; };
 		0A05566F25E506A700E6F88B /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05566E25E506A700E6F88B /* SampleData.swift */; };
@@ -27,6 +25,11 @@
 		0A05567F25E5567200E6F88B /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05567E25E5567200E6F88B /* InputField.swift */; };
 		0A05568125E5569000E6F88B /* CaptionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05568025E5569000E6F88B /* CaptionLabel.swift */; };
 		0A05568325E558BC00E6F88B /* TextEditorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05568225E558BC00E6F88B /* TextEditorField.swift */; };
+		0A05568825E5675200E6F88B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05568725E5675200E6F88B /* Date.swift */; };
+		0A05568A25E567CB00E6F88B /* LabelledDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05568925E567CB00E6F88B /* LabelledDate.swift */; };
+		0A05568C25E57B5400E6F88B /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05568B25E57B5400E6F88B /* CheckBox.swift */; };
+		0A05569225E588D100E6F88B /* NumberInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05569125E588D100E6F88B /* NumberInputField.swift */; };
+		0A05569D25E5A73700E6F88B /* SwiftBSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05569C25E5A73700E6F88B /* SwiftBSON */; };
 		63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */; };
 		C2658E83FCE57608481A1FAC /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */; };
 		DE0E113D1801F5FA20A196EC /* Pods_ProrcrastDonateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */; };
@@ -74,6 +77,10 @@
 		0A05567E25E5567200E6F88B /* InputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		0A05568025E5569000E6F88B /* CaptionLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptionLabel.swift; sourceTree = "<group>"; };
 		0A05568225E558BC00E6F88B /* TextEditorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorField.swift; sourceTree = "<group>"; };
+		0A05568725E5675200E6F88B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		0A05568925E567CB00E6F88B /* LabelledDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDate.swift; sourceTree = "<group>"; };
+		0A05568B25E57B5400E6F88B /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		0A05569125E588D100E6F88B /* NumberInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputField.swift; sourceTree = "<group>"; };
 		406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate-ProrcrastDonateUITests/Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,8 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A05566925E5023000E6F88B /* RealmSwift in Frameworks */,
-				0A05566725E5023000E6F88B /* Realm in Frameworks */,
+				0A05569D25E5A73700E6F88B /* SwiftBSON in Frameworks */,
 				63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +151,7 @@
 				0A05567625E5229400E6F88B /* AppState.swift */,
 				0A05565C25E4FDAB00E6F88B /* Views */,
 				0A05565B25E4FD9F00E6F88B /* Model */,
+				0A05568625E5673000E6F88B /* Helpers */,
 				0A05563925E4FD5000E6F88B /* Info.plist */,
 				0A05563425E4FD5000E6F88B /* Assets.xcassets */,
 				0A05563625E4FD5000E6F88B /* Preview Content */,
@@ -215,8 +222,19 @@
 				0A05568025E5569000E6F88B /* CaptionLabel.swift */,
 				0A05567E25E5567200E6F88B /* InputField.swift */,
 				0A05568225E558BC00E6F88B /* TextEditorField.swift */,
+				0A05568925E567CB00E6F88B /* LabelledDate.swift */,
+				0A05568B25E57B5400E6F88B /* CheckBox.swift */,
+				0A05569125E588D100E6F88B /* NumberInputField.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		0A05568625E5673000E6F88B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0A05568725E5675200E6F88B /* Date.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		7E87F041918D8ABC591E8AF0 /* Frameworks */ = {
@@ -261,8 +279,7 @@
 			);
 			name = ProcrastDonate;
 			packageProductDependencies = (
-				0A05566625E5023000E6F88B /* Realm */,
-				0A05566825E5023000E6F88B /* RealmSwift */,
+				0A05569C25E5A73700E6F88B /* SwiftBSON */,
 			);
 			productName = ProrcrastDonate;
 			productReference = 0A05562D25E4FD4B00E6F88B /* ProcrastDonate.app */;
@@ -338,7 +355,7 @@
 			);
 			mainGroup = 0A05562425E4FD4B00E6F88B;
 			packageReferences = (
-				0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				0A05569B25E5A73700E6F88B /* XCRemoteSwiftPackageReference "swift-bson" */,
 			);
 			productRefGroup = 0A05562E25E4FD4B00E6F88B /* Products */;
 			projectDirPath = "";
@@ -469,8 +486,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A05568C25E57B5400E6F88B /* CheckBox.swift in Sources */,
+				0A05568A25E567CB00E6F88B /* LabelledDate.swift in Sources */,
 				0A05566D25E5067400E6F88B /* PreviewHelpers.swift in Sources */,
 				0A05567F25E5567200E6F88B /* InputField.swift in Sources */,
+				0A05569225E588D100E6F88B /* NumberInputField.swift in Sources */,
 				0A05566125E4FE7500E6F88B /* ContentView.swift in Sources */,
 				0A05568125E5569000E6F88B /* CaptionLabel.swift in Sources */,
 				0A05563125E4FD4B00E6F88B /* ProrcrastDonateApp.swift in Sources */,
@@ -478,6 +498,7 @@
 				0A05567C25E541F300E6F88B /* TaskDetailsView.swift in Sources */,
 				0A05566F25E506A700E6F88B /* SampleData.swift in Sources */,
 				0A05567525E520B700E6F88B /* Charity.swift in Sources */,
+				0A05568825E5675200E6F88B /* Date.swift in Sources */,
 				0A05568325E558BC00E6F88B /* TextEditorField.swift in Sources */,
 				0A05567325E5141200E6F88B /* Renewal.swift in Sources */,
 				0A05567125E50D4700E6F88B /* Task.swift in Sources */,
@@ -809,26 +830,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		0A05569B25E5A73700E6F88B /* XCRemoteSwiftPackageReference "swift-bson" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-cocoa";
+			repositoryURL = "https://github.com/am-MongoDB/swift-bson";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.6.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		0A05566625E5023000E6F88B /* Realm */ = {
+		0A05569C25E5A73700E6F88B /* SwiftBSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = Realm;
-		};
-		0A05566825E5023000E6F88B /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
-			productName = RealmSwift;
+			package = 0A05569B25E5A73700E6F88B /* XCRemoteSwiftPackageReference "swift-bson" */;
+			productName = SwiftBSON;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

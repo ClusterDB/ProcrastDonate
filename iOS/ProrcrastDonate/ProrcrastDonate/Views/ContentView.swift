@@ -15,7 +15,9 @@ struct ContentView: View {
     }
     
     var body: some View {
-        TaskDetailsView(task: task)
+        NavigationView {
+            TaskDetailsView(task: task)
+        }
     }
 }
 

@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import RealmSwift
+import SwiftBSON
 
 protocol Samplable {
     associatedtype Item
@@ -36,8 +36,8 @@ extension User {
 extension User: Samplable {
     static var samples: [User] { [sample, sample2, sample3] }
     static var sample: User {
-        User(
-            _id: ObjectId("f0d456789012345678901234"),
+        try! User(
+            _id: BSONObjectID("f0d456789012345678901234"),
             userName: "rod",
             displayName: "Rod",
             email: "rod@contoso.com",
@@ -46,8 +46,8 @@ extension User: Samplable {
             friends: [sample2._id, sample3._id])
     }
     static var sample2: User {
-        User(
-            _id: ObjectId("1ade56789012345678901234"),
+        try! User(
+            _id: BSONObjectID("1ade56789012345678901234"),
             userName: "jane",
             displayName: "Jane",
             email: "jane@contoso.com",
@@ -56,8 +56,8 @@ extension User: Samplable {
             friends: [sample._id, sample3._id])
     }
     static var sample3: User {
-        User(
-            _id: ObjectId("ffedde789012345678901234"),
+        try! User(
+            _id: BSONObjectID("ffedde789012345678901234"),
             userName: "freddy",
             displayName: "Freddy",
             email: "freddy@contoso.com",
@@ -119,7 +119,7 @@ extension Charity {
         self.init()
         _id = charity._id
         name = charity.name
-        description = charity.description
+        descriptionText = charity.descriptionText
         website = charity.website
     }
 }
@@ -127,24 +127,24 @@ extension Charity {
 extension Charity: Samplable {
     static var samples: [Charity] { [sample, sample2, sample3] }
     static var sample: Charity {
-        Charity(
-            _id: ObjectId("cad456789012345678901234"),
+        try! Charity(
+            _id: BSONObjectID("cad456789012345678901234"),
             name: "Save The Cats",
-            description: "Looking after the furry little critters",
+            descriptionText: "Looking after the furry little critters",
             website: "https://clusterdb.com")
     }
     static var sample2: Charity {
-        Charity(
-            _id: ObjectId("bad456789012345678901234"),
+        try! Charity(
+            _id: BSONObjectID("bad456789012345678901234"),
             name: "Save The Bats",
-            description: "Blocking planning applications for years",
+            descriptionText: "Blocking planning applications for years",
             website: "https://clusterdb.com")
     }
     static var sample3: Charity {
-        Charity(
-            _id: ObjectId("1ab456789012345678901234"),
+        try! Charity(
+            _id: BSONObjectID("1ab456789012345678901234"),
             name: "Save The Tabs",
-            description: "Spaces are for the birds",
+            descriptionText: "Spaces are for the birds",
             website: "https://clusterdb.com")
     }
 }
@@ -154,7 +154,7 @@ extension Task {
         self.init()
         // Don't copy _id
         title = task.title
-        description = task.description
+        descriptionText = task.descriptionText
         startDate = task.startDate
         completedDate = task.completedDate
         cancelDate = task.cancelDate
@@ -163,7 +163,8 @@ extension Task {
         }
         deadlineDate = task.deadlineDate
         donateOnFailure = task.donateOnFailure
-        charities.append(contentsOf: task.charities)
+        donationAmount = task.donationAmount
+        charity = task.charity
         tags.append(contentsOf: task.tags)
     }
 }
@@ -171,42 +172,51 @@ extension Task {
 extension Task: Samplable {
     static var samples: [Task] { [sample, sample2, sample3] }
     static var sample: Task {
-        Task(
-            _id: ObjectId("111456789012345678901234"),
+        try! Task(
+            _id: BSONObjectID("111456789012345678901234"),
             title: "Task 1",
-            description: "First task",
+            descriptionText: """
+            This is the first task's description.
+            It can scan many lines.
+            many...
+            many...
+            many...
+            """,
             startDate: Date(),
             cancelDate: nil,
             renewals: Renewal.samples,
             deadlineDate: Date().addingTimeInterval(86400),
             donateOnFailure: true,
-            charities: [Charity.sample._id],
+            donationAmount: 25,
+            charity: Charity.sample._id,
             tags: ["animals"])
     }
     static var sample2: Task {
-        Task(
-            _id: ObjectId("222456789012345678901234"),
+        try! Task(
+            _id: BSONObjectID("222456789012345678901234"),
             title: "Task 2",
-            description: "Second task",
+            descriptionText: "Second task",
             startDate: Date(),
             cancelDate: nil,
             renewals: Renewal.samples,
             deadlineDate: Date().addingTimeInterval(226400),
             donateOnFailure: false,
-            charities: [Charity.sample2._id],
+            donationAmount: 0,
             tags: ["animals", "creepy"])
     }
     static var sample3: Task {
-        Task(
-            _id: ObjectId("333456789012345678901234"),
+        try! Task(
+            _id: BSONObjectID("333456789012345678901234"),
             title: "Task 3 - with a longer task name than some others",
-            description: "Third task - which has a longer description than some others. Filler text here. Filler text here. ",
+            descriptionText: "Third task - which has a longer description than some others. Filler text here. Filler text here. ",
             startDate: Date().addingTimeInterval(-86400),
+            completedDate: Date().addingTimeInterval(-16400),
             cancelDate: Date(),
             renewals: [],
             deadlineDate: Date().addingTimeInterval(126400),
-            donateOnFailure: false,
-            charities: [Charity.sample._id, Charity.sample3._id],
+            donateOnFailure: true,
+            donationAmount: 10,
+            charity: Charity.sample3._id,
             tags: ["developers"])
     }
 }

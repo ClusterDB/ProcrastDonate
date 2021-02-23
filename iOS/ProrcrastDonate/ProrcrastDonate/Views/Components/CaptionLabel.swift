@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct CaptionLabel: View {
-    let title: String
+    @State var title: String
+    
+    init(_ title: String) {
+        _title = State(initialValue: title)
+    }
     
     private let lineLimit = 5
 
@@ -27,7 +31,7 @@ struct CaptionLabel: View {
 struct CaptionLabel_Previews: PreviewProvider {
     static var previews: some View {
         AppearancePreviews(
-            CaptionLabel(title: "Title")
+            CaptionLabel("Title")
                 .previewLayout(.sizeThatFits)
                 .padding()
         )
