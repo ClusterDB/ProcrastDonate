@@ -2,7 +2,7 @@
 # ProcrastDonate data model:
 
 This section outlines the schemas of the various collections to be stored in MongoDB. See the [REST API
-Routes](#rest-api-routes) section for information on how the data is to be accessed via the client(s).
+Endpoints](#rest-api-endpoints) section for information on how the data is to be accessed via the client(s).
 
 ## `user` collection
 Stores user account information, such as name, email, password, etc.
