@@ -5,36 +5,39 @@
 //  Created by Andrew Morgan on 23/02/2021.
 //
 
-import Foundation
-
 import RealmSwift
 
 @objcMembers class User: Object, ObjectKeyIdentifiable {
-    dynamic var _id = UUID().uuidString
-    dynamic var partition = "" // "user=_id"
+    dynamic var _id = ObjectId()
     dynamic var userName = ""
-    dynamic var userPreferences: UserPreferences?
-    dynamic var lastSeenAt: Date?
-    var conversations = List<Conversation>()
-    dynamic var presence = "Off-Line"
-
-    var isProfileSet: Bool { !(userPreferences?.isEmpty ?? true) }
-    var presenceState: Presence {
-        get { return Presence(rawValue: presence) ?? .hidden }
-        set { presence = newValue.asString }
+    dynamic var displayName = ""
+    dynamic var email = ""
+    dynamic var password = "" // Should be hashed
+    dynamic var bio = ""
+    var friends = List<ObjectId>()
+    
+    convenience init(
+        _id: ObjectId = ObjectId(),
+        userName: String,
+        displayName: String,
+        email: String,
+        password: String,
+        bio: String,
+        friends: [ObjectId] = []
+    ) {
+        self.init()
+        self._id = _id
+        self.userName = userName
+        self.displayName = displayName
+        self.email = email
+        self.password = password
+        self.bio = bio
+        for friend in friends {
+            self.friends.append(friend)
+        }
     }
-
+    
     override static func primaryKey() -> String? {
         return "_id"
-    }
-}
-
-enum Presence: String {
-    case onLine = "On-Line"
-    case offLine = "Off-Line"
-    case hidden = "Hidden"
-    
-    var asString: String {
-        self.rawValue
     }
 }
