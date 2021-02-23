@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:ProrcrastDonate.xcodeproj">
+      location = "group:/Users/andrew.morgan/src/ProcrastDonate/iOS/ProrcrastDonate/ProcrastDonate.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

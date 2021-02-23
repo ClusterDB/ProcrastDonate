@@ -46,15 +46,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A05562D25E4FD4B00E6F88B /* ProrcrastDonate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProrcrastDonate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A05562D25E4FD4B00E6F88B /* ProcrastDonate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProcrastDonate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A05563025E4FD4B00E6F88B /* ProrcrastDonateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProrcrastDonateApp.swift; sourceTree = "<group>"; };
 		0A05563425E4FD5000E6F88B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A05563725E4FD5000E6F88B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0A05563925E4FD5000E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A05563E25E4FD5100E6F88B /* ProrcrastDonateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProrcrastDonateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A05563E25E4FD5100E6F88B /* ProcrastDonateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProcrastDonateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A05564225E4FD5100E6F88B /* ProrcrastDonateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProrcrastDonateTests.swift; sourceTree = "<group>"; };
 		0A05564425E4FD5100E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0A05564925E4FD5100E6F88B /* ProrcrastDonateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProrcrastDonateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A05564925E4FD5100E6F88B /* ProcrastDonateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProcrastDonateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A05564D25E4FD5100E6F88B /* ProrcrastDonateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProrcrastDonateUITests.swift; sourceTree = "<group>"; };
 		0A05564F25E4FD5100E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A05566025E4FE7500E6F88B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,9 +123,9 @@
 		0A05562E25E4FD4B00E6F88B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A05562D25E4FD4B00E6F88B /* ProrcrastDonate.app */,
-				0A05563E25E4FD5100E6F88B /* ProrcrastDonateTests.xctest */,
-				0A05564925E4FD5100E6F88B /* ProrcrastDonateUITests.xctest */,
+				0A05562D25E4FD4B00E6F88B /* ProcrastDonate.app */,
+				0A05563E25E4FD5100E6F88B /* ProcrastDonateTests.xctest */,
+				0A05564925E4FD5100E6F88B /* ProcrastDonateUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,9 +241,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */ = {
+		0A05562C25E4FD4B00E6F88B /* ProcrastDonate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A05565225E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonate" */;
+			buildConfigurationList = 0A05565225E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProcrastDonate" */;
 			buildPhases = (
 				D1CE0741DA167D8143AF2976 /* [CP] Check Pods Manifest.lock */,
 				0A05562925E4FD4B00E6F88B /* Sources */,
@@ -255,18 +255,18 @@
 			);
 			dependencies = (
 			);
-			name = ProrcrastDonate;
+			name = ProcrastDonate;
 			packageProductDependencies = (
 				0A05566625E5023000E6F88B /* Realm */,
 				0A05566825E5023000E6F88B /* RealmSwift */,
 			);
 			productName = ProrcrastDonate;
-			productReference = 0A05562D25E4FD4B00E6F88B /* ProrcrastDonate.app */;
+			productReference = 0A05562D25E4FD4B00E6F88B /* ProcrastDonate.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0A05563D25E4FD5100E6F88B /* ProrcrastDonateTests */ = {
+		0A05563D25E4FD5100E6F88B /* ProcrastDonateTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A05565525E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateTests" */;
+			buildConfigurationList = 0A05565525E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProcrastDonateTests" */;
 			buildPhases = (
 				E551EB09B0800F256BEBB4C2 /* [CP] Check Pods Manifest.lock */,
 				0A05563A25E4FD5100E6F88B /* Sources */,
@@ -278,14 +278,14 @@
 			dependencies = (
 				0A05564025E4FD5100E6F88B /* PBXTargetDependency */,
 			);
-			name = ProrcrastDonateTests;
+			name = ProcrastDonateTests;
 			productName = ProrcrastDonateTests;
-			productReference = 0A05563E25E4FD5100E6F88B /* ProrcrastDonateTests.xctest */;
+			productReference = 0A05563E25E4FD5100E6F88B /* ProcrastDonateTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		0A05564825E4FD5100E6F88B /* ProrcrastDonateUITests */ = {
+		0A05564825E4FD5100E6F88B /* ProcrastDonateUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A05565825E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateUITests" */;
+			buildConfigurationList = 0A05565825E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProcrastDonateUITests" */;
 			buildPhases = (
 				947A0A5C3554D1E41808241A /* [CP] Check Pods Manifest.lock */,
 				0A05564525E4FD5100E6F88B /* Sources */,
@@ -297,9 +297,9 @@
 			dependencies = (
 				0A05564B25E4FD5100E6F88B /* PBXTargetDependency */,
 			);
-			name = ProrcrastDonateUITests;
+			name = ProcrastDonateUITests;
 			productName = ProrcrastDonateUITests;
-			productReference = 0A05564925E4FD5100E6F88B /* ProrcrastDonateUITests.xctest */;
+			productReference = 0A05564925E4FD5100E6F88B /* ProcrastDonateUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -324,7 +324,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A05562825E4FD4B00E6F88B /* Build configuration list for PBXProject "ProrcrastDonate" */;
+			buildConfigurationList = 0A05562825E4FD4B00E6F88B /* Build configuration list for PBXProject "ProcrastDonate" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -340,9 +340,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */,
-				0A05563D25E4FD5100E6F88B /* ProrcrastDonateTests */,
-				0A05564825E4FD5100E6F88B /* ProrcrastDonateUITests */,
+				0A05562C25E4FD4B00E6F88B /* ProcrastDonate */,
+				0A05563D25E4FD5100E6F88B /* ProcrastDonateTests */,
+				0A05564825E4FD5100E6F88B /* ProcrastDonateUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -498,12 +498,12 @@
 /* Begin PBXTargetDependency section */
 		0A05564025E4FD5100E6F88B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */;
+			target = 0A05562C25E4FD4B00E6F88B /* ProcrastDonate */;
 			targetProxy = 0A05563F25E4FD5100E6F88B /* PBXContainerItemProxy */;
 		};
 		0A05564B25E4FD5100E6F88B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */;
+			target = 0A05562C25E4FD4B00E6F88B /* ProcrastDonate */;
 			targetProxy = 0A05564A25E4FD5100E6F88B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -690,7 +690,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProrcrastDonate.app/ProrcrastDonate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProcrastDonate.app/ProcrastDonate";
 			};
 			name = Debug;
 		};
@@ -713,7 +713,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProrcrastDonate.app/ProrcrastDonate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProcrastDonate.app/ProcrastDonate";
 			};
 			name = Release;
 		};
@@ -762,7 +762,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A05562825E4FD4B00E6F88B /* Build configuration list for PBXProject "ProrcrastDonate" */ = {
+		0A05562825E4FD4B00E6F88B /* Build configuration list for PBXProject "ProcrastDonate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A05565025E4FD5100E6F88B /* Debug */,
@@ -771,7 +771,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A05565225E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonate" */ = {
+		0A05565225E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProcrastDonate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A05565325E4FD5100E6F88B /* Debug */,
@@ -780,7 +780,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A05565525E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateTests" */ = {
+		0A05565525E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProcrastDonateTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A05565625E4FD5100E6F88B /* Debug */,
@@ -789,7 +789,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A05565825E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateUITests" */ = {
+		0A05565825E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProcrastDonateUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A05565925E4FD5100E6F88B /* Debug */,

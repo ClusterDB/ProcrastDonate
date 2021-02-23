@@ -114,6 +114,41 @@ extension Renewal: Samplable {
     }
 }
 
+extension Charity {
+    convenience init (_ charity: Charity) {
+        self.init()
+        _id = charity._id
+        name = charity.name
+        charityDescription = charity.charityDescription
+        website = charity.website
+    }
+}
+
+extension Charity: Samplable {
+    static var samples: [Charity] { [sample, sample2, sample3] }
+    static var sample: Charity {
+        Charity(
+            _id: ObjectId("save-the-cats-id"),
+            name: "Save The Cats",
+            charityDescription: "Looking after the furry little critters",
+            website: "https://clusterdb.com")
+    }
+    static var sample2: Charity {
+        Charity(
+            _id: ObjectId("save-the-bats-id"),
+            name: "Save The Bats",
+            charityDescription: "Blocking planning applications for years",
+            website: "https://clusterdb.com")
+    }
+    static var sample3: Charity {
+        Charity(
+            _id: ObjectId("save-the-tabs-id"),
+            name: "Save The Tabs",
+            charityDescription: "Spaces are for the birds",
+            website: "https://clusterdb.com")
+    }
+}
+
 extension Task {
     convenience init(_ task: Task) {
         self.init()
@@ -145,7 +180,7 @@ extension Task: Samplable {
             renewals: Renewal.samples,
             deadlineDate: Date().addingTimeInterval(86400),
             donateOnFailure: true,
-            charities: [ObjectId("save-the-cats-id")],
+            charities: [Charity.sample._id],
             tags: ["animals"])
     }
     static var sample2: Task {
@@ -158,7 +193,7 @@ extension Task: Samplable {
             renewals: Renewal.samples,
             deadlineDate: Date().addingTimeInterval(226400),
             donateOnFailure: false,
-            charities: [ObjectId("save-the-bats-id")],
+            charities: [Charity.sample2._id],
             tags: ["animals", "creepy"])
     }
     static var sample3: Task {
@@ -171,7 +206,7 @@ extension Task: Samplable {
             renewals: [],
             deadlineDate: Date().addingTimeInterval(126400),
             donateOnFailure: false,
-            charities: [ObjectId("save-the-tabs")],
+            charities: [Charity.sample._id, Charity.sample3._id],
             tags: ["developers"])
     }
 }
