@@ -210,3 +210,19 @@ extension Task: Samplable {
             tags: ["developers"])
     }
 }
+
+extension Realm {
+    static func bootstrap() {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.deleteAll()
+                realm.add(User.samples)
+                realm.add(Charity.samples)
+                realm.add(Task.samples)
+            }
+        } catch {
+            print("Failed to bootstrap the default realm")
+        }
+    }
+}
