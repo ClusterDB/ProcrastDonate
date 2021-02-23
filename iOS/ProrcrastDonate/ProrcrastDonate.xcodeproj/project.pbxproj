@@ -1,0 +1,800 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A05563125E4FD4B00E6F88B /* ProrcrastDonateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05563025E4FD4B00E6F88B /* ProrcrastDonateApp.swift */; };
+		0A05563525E4FD5000E6F88B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A05563425E4FD5000E6F88B /* Assets.xcassets */; };
+		0A05563825E4FD5000E6F88B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A05563725E4FD5000E6F88B /* Preview Assets.xcassets */; };
+		0A05564325E4FD5100E6F88B /* ProrcrastDonateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05564225E4FD5100E6F88B /* ProrcrastDonateTests.swift */; };
+		0A05564E25E4FD5100E6F88B /* ProrcrastDonateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05564D25E4FD5100E6F88B /* ProrcrastDonateUITests.swift */; };
+		0A05566125E4FE7500E6F88B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05566025E4FE7500E6F88B /* ContentView.swift */; };
+		0A05566425E5009A00E6F88B /* swiftlint in Resources */ = {isa = PBXBuildFile; fileRef = 0A05566325E5009A00E6F88B /* swiftlint */; };
+		0A05566725E5023000E6F88B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05566625E5023000E6F88B /* Realm */; };
+		0A05566925E5023000E6F88B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05566825E5023000E6F88B /* RealmSwift */; };
+		63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */; };
+		C2658E83FCE57608481A1FAC /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */; };
+		DE0E113D1801F5FA20A196EC /* Pods_ProrcrastDonateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A05563F25E4FD5100E6F88B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A05562525E4FD4B00E6F88B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A05562C25E4FD4B00E6F88B;
+			remoteInfo = ProrcrastDonate;
+		};
+		0A05564A25E4FD5100E6F88B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0A05562525E4FD4B00E6F88B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0A05562C25E4FD4B00E6F88B;
+			remoteInfo = ProrcrastDonate;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A05562D25E4FD4B00E6F88B /* ProrcrastDonate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProrcrastDonate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A05563025E4FD4B00E6F88B /* ProrcrastDonateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProrcrastDonateApp.swift; sourceTree = "<group>"; };
+		0A05563425E4FD5000E6F88B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0A05563725E4FD5000E6F88B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0A05563925E4FD5000E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A05563E25E4FD5100E6F88B /* ProrcrastDonateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProrcrastDonateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A05564225E4FD5100E6F88B /* ProrcrastDonateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProrcrastDonateTests.swift; sourceTree = "<group>"; };
+		0A05564425E4FD5100E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A05564925E4FD5100E6F88B /* ProrcrastDonateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProrcrastDonateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A05564D25E4FD5100E6F88B /* ProrcrastDonateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProrcrastDonateUITests.swift; sourceTree = "<group>"; };
+		0A05564F25E4FD5100E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A05566025E4FE7500E6F88B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0A05566325E5009A00E6F88B /* swiftlint */ = {isa = PBXFileReference; lastKnownFileType = folder; path = swiftlint; sourceTree = "<group>"; };
+		406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate-ProrcrastDonateUITests/Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; sourceTree = "<group>"; };
+		A77E4999A1D860634701A644 /* Pods-ProrcrastDonateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonateTests.debug.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonateTests/Pods-ProrcrastDonateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C22B2A3BDEE5AE77D5D6C585 /* Pods-ProrcrastDonateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonateTests.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonateTests/Pods-ProrcrastDonateTests.release.xcconfig"; sourceTree = "<group>"; };
+		C91DE8629F982544766E702C /* Pods-ProrcrastDonate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate.debug.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate/Pods-ProrcrastDonate.debug.xcconfig"; sourceTree = "<group>"; };
+		D9CABF489B2BE02D06A9925D /* Pods-ProrcrastDonate-ProrcrastDonateUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate-ProrcrastDonateUITests.debug.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate-ProrcrastDonateUITests/Pods-ProrcrastDonate-ProrcrastDonateUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonate_ProrcrastDonateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7D9E5193748187A55810BE1 /* Pods-ProrcrastDonate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate/Pods-ProrcrastDonate.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0A05562A25E4FD4B00E6F88B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A05566925E5023000E6F88B /* RealmSwift in Frameworks */,
+				0A05566725E5023000E6F88B /* Realm in Frameworks */,
+				63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A05563B25E4FD5100E6F88B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE0E113D1801F5FA20A196EC /* Pods_ProrcrastDonateTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A05564625E4FD5100E6F88B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2658E83FCE57608481A1FAC /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A05562425E4FD4B00E6F88B = {
+			isa = PBXGroup;
+			children = (
+				0A05562F25E4FD4B00E6F88B /* ProrcrastDonate */,
+				0A05564125E4FD5100E6F88B /* ProrcrastDonateTests */,
+				0A05564C25E4FD5100E6F88B /* ProrcrastDonateUITests */,
+				0A05562E25E4FD4B00E6F88B /* Products */,
+				9F73A74BD6345ECBE37AC8CD /* Pods */,
+				0A05566325E5009A00E6F88B /* swiftlint */,
+				7E87F041918D8ABC591E8AF0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0A05562E25E4FD4B00E6F88B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0A05562D25E4FD4B00E6F88B /* ProrcrastDonate.app */,
+				0A05563E25E4FD5100E6F88B /* ProrcrastDonateTests.xctest */,
+				0A05564925E4FD5100E6F88B /* ProrcrastDonateUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0A05562F25E4FD4B00E6F88B /* ProrcrastDonate */ = {
+			isa = PBXGroup;
+			children = (
+				0A05565C25E4FDAB00E6F88B /* Views */,
+				0A05565B25E4FD9F00E6F88B /* Model */,
+				0A05563025E4FD4B00E6F88B /* ProrcrastDonateApp.swift */,
+				0A05563425E4FD5000E6F88B /* Assets.xcassets */,
+				0A05563925E4FD5000E6F88B /* Info.plist */,
+				0A05563625E4FD5000E6F88B /* Preview Content */,
+			);
+			path = ProrcrastDonate;
+			sourceTree = "<group>";
+		};
+		0A05563625E4FD5000E6F88B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				0A05563725E4FD5000E6F88B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0A05564125E4FD5100E6F88B /* ProrcrastDonateTests */ = {
+			isa = PBXGroup;
+			children = (
+				0A05564225E4FD5100E6F88B /* ProrcrastDonateTests.swift */,
+				0A05564425E4FD5100E6F88B /* Info.plist */,
+			);
+			path = ProrcrastDonateTests;
+			sourceTree = "<group>";
+		};
+		0A05564C25E4FD5100E6F88B /* ProrcrastDonateUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0A05564D25E4FD5100E6F88B /* ProrcrastDonateUITests.swift */,
+				0A05564F25E4FD5100E6F88B /* Info.plist */,
+			);
+			path = ProrcrastDonateUITests;
+			sourceTree = "<group>";
+		};
+		0A05565B25E4FD9F00E6F88B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A05565C25E4FDAB00E6F88B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0A05566025E4FE7500E6F88B /* ContentView.swift */,
+				0A05565D25E4FDBB00E6F88B /* Components */,
+				0A05565E25E4FDCE00E6F88B /* Users */,
+				0A05565F25E4FDD800E6F88B /* Tasks */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		0A05565D25E4FDBB00E6F88B /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0A05565E25E4FDCE00E6F88B /* Users */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Users;
+			sourceTree = "<group>";
+		};
+		0A05565F25E4FDD800E6F88B /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tasks;
+			sourceTree = "<group>";
+		};
+		7E87F041918D8ABC591E8AF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */,
+				EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */,
+				406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F73A74BD6345ECBE37AC8CD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C91DE8629F982544766E702C /* Pods-ProrcrastDonate.debug.xcconfig */,
+				F7D9E5193748187A55810BE1 /* Pods-ProrcrastDonate.release.xcconfig */,
+				D9CABF489B2BE02D06A9925D /* Pods-ProrcrastDonate-ProrcrastDonateUITests.debug.xcconfig */,
+				82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */,
+				A77E4999A1D860634701A644 /* Pods-ProrcrastDonateTests.debug.xcconfig */,
+				C22B2A3BDEE5AE77D5D6C585 /* Pods-ProrcrastDonateTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A05565225E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonate" */;
+			buildPhases = (
+				D1CE0741DA167D8143AF2976 /* [CP] Check Pods Manifest.lock */,
+				0A05562925E4FD4B00E6F88B /* Sources */,
+				0A05562A25E4FD4B00E6F88B /* Frameworks */,
+				0A05562B25E4FD4B00E6F88B /* Resources */,
+				0A05566225E4FFC600E6F88B /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProrcrastDonate;
+			packageProductDependencies = (
+				0A05566625E5023000E6F88B /* Realm */,
+				0A05566825E5023000E6F88B /* RealmSwift */,
+			);
+			productName = ProrcrastDonate;
+			productReference = 0A05562D25E4FD4B00E6F88B /* ProrcrastDonate.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0A05563D25E4FD5100E6F88B /* ProrcrastDonateTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A05565525E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateTests" */;
+			buildPhases = (
+				E551EB09B0800F256BEBB4C2 /* [CP] Check Pods Manifest.lock */,
+				0A05563A25E4FD5100E6F88B /* Sources */,
+				0A05563B25E4FD5100E6F88B /* Frameworks */,
+				0A05563C25E4FD5100E6F88B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A05564025E4FD5100E6F88B /* PBXTargetDependency */,
+			);
+			name = ProrcrastDonateTests;
+			productName = ProrcrastDonateTests;
+			productReference = 0A05563E25E4FD5100E6F88B /* ProrcrastDonateTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0A05564825E4FD5100E6F88B /* ProrcrastDonateUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0A05565825E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateUITests" */;
+			buildPhases = (
+				947A0A5C3554D1E41808241A /* [CP] Check Pods Manifest.lock */,
+				0A05564525E4FD5100E6F88B /* Sources */,
+				0A05564625E4FD5100E6F88B /* Frameworks */,
+				0A05564725E4FD5100E6F88B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0A05564B25E4FD5100E6F88B /* PBXTargetDependency */,
+			);
+			name = ProrcrastDonateUITests;
+			productName = ProrcrastDonateUITests;
+			productReference = 0A05564925E4FD5100E6F88B /* ProrcrastDonateUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0A05562525E4FD4B00E6F88B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					0A05562C25E4FD4B00E6F88B = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					0A05563D25E4FD5100E6F88B = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 0A05562C25E4FD4B00E6F88B;
+					};
+					0A05564825E4FD5100E6F88B = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 0A05562C25E4FD4B00E6F88B;
+					};
+				};
+			};
+			buildConfigurationList = 0A05562825E4FD4B00E6F88B /* Build configuration list for PBXProject "ProrcrastDonate" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0A05562425E4FD4B00E6F88B;
+			packageReferences = (
+				0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+			);
+			productRefGroup = 0A05562E25E4FD4B00E6F88B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */,
+				0A05563D25E4FD5100E6F88B /* ProrcrastDonateTests */,
+				0A05564825E4FD5100E6F88B /* ProrcrastDonateUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0A05562B25E4FD4B00E6F88B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A05563825E4FD5000E6F88B /* Preview Assets.xcassets in Resources */,
+				0A05566425E5009A00E6F88B /* swiftlint in Resources */,
+				0A05563525E4FD5000E6F88B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A05563C25E4FD5100E6F88B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A05564725E4FD5100E6F88B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A05566225E4FFC600E6F88B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n  \"${PODS_ROOT}/SwiftLint/swiftlint\" --path ProrcrastDonate --config \"${SRCROOT}/swiftlint/swiftlint_config.yaml\" \nelse\n  echo \"warning: SwiftLint not installed, run pod install\"\nfi\n";
+		};
+		947A0A5C3554D1E41808241A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ProrcrastDonate-ProrcrastDonateUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D1CE0741DA167D8143AF2976 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ProrcrastDonate-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E551EB09B0800F256BEBB4C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ProrcrastDonateTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0A05562925E4FD4B00E6F88B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A05566125E4FE7500E6F88B /* ContentView.swift in Sources */,
+				0A05563125E4FD4B00E6F88B /* ProrcrastDonateApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A05563A25E4FD5100E6F88B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A05564325E4FD5100E6F88B /* ProrcrastDonateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0A05564525E4FD5100E6F88B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A05564E25E4FD5100E6F88B /* ProrcrastDonateUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0A05564025E4FD5100E6F88B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */;
+			targetProxy = 0A05563F25E4FD5100E6F88B /* PBXContainerItemProxy */;
+		};
+		0A05564B25E4FD5100E6F88B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0A05562C25E4FD4B00E6F88B /* ProrcrastDonate */;
+			targetProxy = 0A05564A25E4FD5100E6F88B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0A05565025E4FD5100E6F88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		0A05565125E4FD5100E6F88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0A05565325E4FD5100E6F88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C91DE8629F982544766E702C /* Pods-ProrcrastDonate.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ProrcrastDonate/Preview Content\"";
+				DEVELOPMENT_TEAM = CV5PJSAH7N;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ProrcrastDonate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clusterdb.ProrcrastDonate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0A05565425E4FD5100E6F88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7D9E5193748187A55810BE1 /* Pods-ProrcrastDonate.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ProrcrastDonate/Preview Content\"";
+				DEVELOPMENT_TEAM = CV5PJSAH7N;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ProrcrastDonate/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clusterdb.ProrcrastDonate;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		0A05565625E4FD5100E6F88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A77E4999A1D860634701A644 /* Pods-ProrcrastDonateTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CV5PJSAH7N;
+				INFOPLIST_FILE = ProrcrastDonateTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clusterdb.ProrcrastDonateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProrcrastDonate.app/ProrcrastDonate";
+			};
+			name = Debug;
+		};
+		0A05565725E4FD5100E6F88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C22B2A3BDEE5AE77D5D6C585 /* Pods-ProrcrastDonateTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CV5PJSAH7N;
+				INFOPLIST_FILE = ProrcrastDonateTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clusterdb.ProrcrastDonateTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProrcrastDonate.app/ProrcrastDonate";
+			};
+			name = Release;
+		};
+		0A05565925E4FD5100E6F88B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D9CABF489B2BE02D06A9925D /* Pods-ProrcrastDonate-ProrcrastDonateUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CV5PJSAH7N;
+				INFOPLIST_FILE = ProrcrastDonateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clusterdb.ProrcrastDonateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ProrcrastDonate;
+			};
+			name = Debug;
+		};
+		0A05565A25E4FD5100E6F88B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CV5PJSAH7N;
+				INFOPLIST_FILE = ProrcrastDonateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.clusterdb.ProrcrastDonateUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ProrcrastDonate;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0A05562825E4FD4B00E6F88B /* Build configuration list for PBXProject "ProrcrastDonate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A05565025E4FD5100E6F88B /* Debug */,
+				0A05565125E4FD5100E6F88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A05565225E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A05565325E4FD5100E6F88B /* Debug */,
+				0A05565425E4FD5100E6F88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A05565525E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A05565625E4FD5100E6F88B /* Debug */,
+				0A05565725E4FD5100E6F88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0A05565825E4FD5100E6F88B /* Build configuration list for PBXNativeTarget "ProrcrastDonateUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0A05565925E4FD5100E6F88B /* Debug */,
+				0A05565A25E4FD5100E6F88B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A05566625E5023000E6F88B /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		0A05566825E5023000E6F88B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A05566525E5023000E6F88B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 0A05562525E4FD4B00E6F88B /* Project object */;
+}
