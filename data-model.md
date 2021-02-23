@@ -38,7 +38,8 @@ Stores all tasks, including completed tasks.
 { 
     _id: <ObjectID>,
     title: <string>,
-    description: <string>,
+    user: <ObjectID>,
+    descriptionText: <string>,
     startDate: <datetime>,
     completedDate: <datetime or null>,
     cancelDate: <datetime or null>,
@@ -77,7 +78,7 @@ facilitate payments to them via stripe.
 { 
     _id: <ObjectID>,
     name: <string>,
-    description: <string>,
+    descriptionText: <string>,
     website: <string>,
 }
 ```
