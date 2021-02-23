@@ -212,11 +212,13 @@ extension Task: Samplable {
 }
 
 extension Realm {
-    static func bootstrap() {
+    static func bootstrap(clearOldData: Bool = true) {
         do {
             let realm = try Realm()
             try realm.write {
-                realm.deleteAll()
+                if clearOldData {
+                    realm.deleteAll()
+                }
                 realm.add(User.samples)
                 realm.add(Charity.samples)
                 realm.add(Task.samples)
