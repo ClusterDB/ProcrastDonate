@@ -16,6 +16,7 @@
 		0A05566425E5009A00E6F88B /* swiftlint in Resources */ = {isa = PBXBuildFile; fileRef = 0A05566325E5009A00E6F88B /* swiftlint */; };
 		0A05566725E5023000E6F88B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05566625E5023000E6F88B /* Realm */; };
 		0A05566925E5023000E6F88B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05566825E5023000E6F88B /* RealmSwift */; };
+		0A05566B25E5044100E6F88B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05566A25E5044100E6F88B /* User.swift */; };
 		63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */; };
 		C2658E83FCE57608481A1FAC /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */; };
 		DE0E113D1801F5FA20A196EC /* Pods_ProrcrastDonateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */; };
@@ -52,6 +53,7 @@
 		0A05564F25E4FD5100E6F88B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A05566025E4FE7500E6F88B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A05566325E5009A00E6F88B /* swiftlint */ = {isa = PBXFileReference; lastKnownFileType = folder; path = swiftlint; sourceTree = "<group>"; };
+		0A05566A25E5044100E6F88B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate-ProrcrastDonateUITests/Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		0A05565B25E4FD9F00E6F88B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0A05566A25E5044100E6F88B /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -446,6 +449,7 @@
 			files = (
 				0A05566125E4FE7500E6F88B /* ContentView.swift in Sources */,
 				0A05563125E4FD4B00E6F88B /* ProrcrastDonateApp.swift in Sources */,
+				0A05566B25E5044100E6F88B /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
