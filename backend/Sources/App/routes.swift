@@ -7,7 +7,8 @@ struct MyError: Error {
 
 extension Request {
     var db: MongoDatabase {
-        self.mongoDB.client.db("dev")
+        let options = MongoDatabaseOptions(writeConcern: .majority)
+        return self.mongoDB.client.db("dev", options: options)
     }
 
     var tasks: MongoCollection<Task> {
@@ -16,6 +17,10 @@ extension Request {
 
     var users: MongoCollection<User> {
         self.db.collection("user", withType: User.self)
+    }
+
+    var charities: MongoCollection<Charity> {
+        self.db.collection("charity", withType: Charity.self)
     }
 }
 
@@ -35,4 +40,5 @@ func routes(_ app: Application) throws {
     }
 
     app.get("users", ":userid", "tasks", use: UserTasks.get)
+    app.post("users", ":userid", "tasks", use: UserTasks.post)
 }
