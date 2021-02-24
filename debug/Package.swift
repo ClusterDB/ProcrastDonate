@@ -16,7 +16,7 @@ let package = Package(
             .upToNextMajor(from: "1.1.0")
         ),
         .package(url: "https://github.com/mongodb/swift-bson.git", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/apple/swift-nio", .upToNextMajor(from: "2.26.0"))
+        .package(url: "https://github.com/apple/swift-nio", .upToNextMajor(from: "2.26.0")),
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
@@ -28,6 +28,7 @@ let package = Package(
             dependencies: [
                 .product(name: "MongoSwiftSync", package: "mongo-swift-driver"),
                 .product(name: "SwiftBSON", package: "swift-bson"),
-            ]),
+            ]
+        ),
     ]
 )

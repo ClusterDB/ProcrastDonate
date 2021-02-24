@@ -54,7 +54,6 @@ func getSponsorships() throws {
             let dataString = data.prettyPrintedJSONString
         {
             print(dataString)
-            
         }
     }
     task.resume()
@@ -72,11 +71,11 @@ func newTask() throws {
         "deadlineDate": .datetime(Date().advanced(by: 10000)),
         "donationAmount": [
             "amount": 10000, // $10
-            "currency": "USD"
+            "currency": "USD",
         ],
         "donationOnFailure": false,
         "charity": charityID,
-        "tags": ["post", "usd"]
+        "tags": ["post", "usd"],
     ]
 
     let url = URL(string: "http://127.0.0.1:8080/users/60355415865cbf06d56935d8/tasks")!
@@ -105,7 +104,6 @@ func newTask() throws {
             let dataString = data.prettyPrintedJSONString
         {
             print(dataString)
-            
         }
     }
     task.resume()
@@ -123,20 +121,20 @@ func populate() throws {
     print((["d": .datetime(now)] as BSONDocument).toExtendedJSONString())
 
     let user: BSONDocument = [
-        "_id": userID, 
+        "_id": userID,
         "username": "test_user",
         "displayName": "John Doe",
         "email": "test@test.com",
         "password": "TBD HASH ALGO",
         "bio": "Hi, I'm John Doe",
-        "friends": []
+        "friends": [],
     ]
 
     let charity: BSONDocument = [
         "_id": charityID,
         "name": "demo charity",
         "descriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        "website": "www.mongodb.com"
+        "website": "www.mongodb.com",
     ]
 
     let taskID = BSON.objectID()
@@ -148,7 +146,7 @@ func populate() throws {
         "startDate": .datetime(Date().advanced(by: -100)),
         "renewals": [],
         "deadlineDate": .datetime(Date().advanced(by: 10000)),
-        "donationAmount": [ "amount": 1000, "currency": "USD" ],
+        "donationAmount": ["amount": 1000, "currency": "USD"],
         "donateOnFailure": true,
         "charity": charityID,
         "tags": ["debug", "fun", "difficult"],
@@ -163,7 +161,7 @@ func populate() throws {
         "renewals": [],
         "deadlineDate": .datetime(Date().advanced(by: 8000)),
         "completedDate": .datetime(Date().advanced(by: 5000)),
-        "donationAmount": [ "amount": 1000, "currency": "USD" ],
+        "donationAmount": ["amount": 1000, "currency": "USD"],
         "donateOnFailure": true,
         "charity": charityID,
         "tags": ["completed"],
@@ -176,10 +174,10 @@ func populate() throws {
         "comment": "you can do it!",
         "donationAmount": [
             "amount": 500,
-            "currency": "USD"
+            "currency": "USD",
         ],
         "startDate": .datetime(Date()),
-        "settled": false
+        "settled": false,
     ]
 
     print("inserting...")
