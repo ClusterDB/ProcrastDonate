@@ -30,6 +30,16 @@
 		0A05568C25E57B5400E6F88B /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05568B25E57B5400E6F88B /* CheckBox.swift */; };
 		0A05569225E588D100E6F88B /* NumberInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05569125E588D100E6F88B /* NumberInputField.swift */; };
 		0A05569D25E5A73700E6F88B /* SwiftBSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0A05569C25E5A73700E6F88B /* SwiftBSON */; };
+		0A05569F25E659C100E6F88B /* CharityPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A05569E25E659C100E6F88B /* CharityPickerView.swift */; };
+		0A0556A125E664F000E6F88B /* CharityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556A025E664F000E6F88B /* CharityView.swift */; };
+		0A0556A325E66A1600E6F88B /* LabeledText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556A225E66A1600E6F88B /* LabeledText.swift */; };
+		0A0556A525E67B5300E6F88B /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556A425E67B5300E6F88B /* Tag.swift */; };
+		0A0556A925E680B300E6F88B /* AddTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556A825E680B300E6F88B /* AddTag.swift */; };
+		0A0556AD25E68E4600E6F88B /* SearchBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556AC25E68E4500E6F88B /* SearchBox.swift */; };
+		0A0556AF25E68EAA00E6F88B /* InputBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556AE25E68EAA00E6F88B /* InputBox.swift */; };
+		0A0556B125E698AA00E6F88B /* TaskCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556B025E698AA00E6F88B /* TaskCard.swift */; };
+		0A0556B325E6B33C00E6F88B /* TagGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556B225E6B33C00E6F88B /* TagGrid.swift */; };
+		0A0556B525E6E4EB00E6F88B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556B425E6E4EB00E6F88B /* TaskListView.swift */; };
 		63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */; };
 		C2658E83FCE57608481A1FAC /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */; };
 		DE0E113D1801F5FA20A196EC /* Pods_ProrcrastDonateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */; };
@@ -81,6 +91,16 @@
 		0A05568925E567CB00E6F88B /* LabelledDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDate.swift; sourceTree = "<group>"; };
 		0A05568B25E57B5400E6F88B /* CheckBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
 		0A05569125E588D100E6F88B /* NumberInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputField.swift; sourceTree = "<group>"; };
+		0A05569E25E659C100E6F88B /* CharityPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityPickerView.swift; sourceTree = "<group>"; };
+		0A0556A025E664F000E6F88B /* CharityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharityView.swift; sourceTree = "<group>"; };
+		0A0556A225E66A1600E6F88B /* LabeledText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabeledText.swift; sourceTree = "<group>"; };
+		0A0556A425E67B5300E6F88B /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		0A0556A825E680B300E6F88B /* AddTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTag.swift; sourceTree = "<group>"; };
+		0A0556AC25E68E4500E6F88B /* SearchBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBox.swift; sourceTree = "<group>"; };
+		0A0556AE25E68EAA00E6F88B /* InputBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBox.swift; sourceTree = "<group>"; };
+		0A0556B025E698AA00E6F88B /* TaskCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCard.swift; sourceTree = "<group>"; };
+		0A0556B225E6B33C00E6F88B /* TagGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGrid.swift; sourceTree = "<group>"; };
+		0A0556B425E6E4EB00E6F88B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
 		406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate-ProrcrastDonateUITests/Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +232,10 @@
 			isa = PBXGroup;
 			children = (
 				0A05567B25E541F300E6F88B /* TaskDetailsView.swift */,
+				0A05569E25E659C100E6F88B /* CharityPickerView.swift */,
+				0A0556A025E664F000E6F88B /* CharityView.swift */,
+				0A0556B025E698AA00E6F88B /* TaskCard.swift */,
+				0A0556B425E6E4EB00E6F88B /* TaskListView.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -225,6 +249,12 @@
 				0A05568925E567CB00E6F88B /* LabelledDate.swift */,
 				0A05568B25E57B5400E6F88B /* CheckBox.swift */,
 				0A05569125E588D100E6F88B /* NumberInputField.swift */,
+				0A0556A225E66A1600E6F88B /* LabeledText.swift */,
+				0A0556A425E67B5300E6F88B /* Tag.swift */,
+				0A0556A825E680B300E6F88B /* AddTag.swift */,
+				0A0556AC25E68E4500E6F88B /* SearchBox.swift */,
+				0A0556AE25E68EAA00E6F88B /* InputBox.swift */,
+				0A0556B225E6B33C00E6F88B /* TagGrid.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -488,17 +518,27 @@
 			files = (
 				0A05568C25E57B5400E6F88B /* CheckBox.swift in Sources */,
 				0A05568A25E567CB00E6F88B /* LabelledDate.swift in Sources */,
+				0A0556AF25E68EAA00E6F88B /* InputBox.swift in Sources */,
 				0A05566D25E5067400E6F88B /* PreviewHelpers.swift in Sources */,
+				0A0556A525E67B5300E6F88B /* Tag.swift in Sources */,
 				0A05567F25E5567200E6F88B /* InputField.swift in Sources */,
 				0A05569225E588D100E6F88B /* NumberInputField.swift in Sources */,
 				0A05566125E4FE7500E6F88B /* ContentView.swift in Sources */,
 				0A05568125E5569000E6F88B /* CaptionLabel.swift in Sources */,
+				0A0556B125E698AA00E6F88B /* TaskCard.swift in Sources */,
 				0A05563125E4FD4B00E6F88B /* ProrcrastDonateApp.swift in Sources */,
+				0A0556AD25E68E4600E6F88B /* SearchBox.swift in Sources */,
 				0A05567725E5229400E6F88B /* AppState.swift in Sources */,
+				0A05569F25E659C100E6F88B /* CharityPickerView.swift in Sources */,
 				0A05567C25E541F300E6F88B /* TaskDetailsView.swift in Sources */,
 				0A05566F25E506A700E6F88B /* SampleData.swift in Sources */,
 				0A05567525E520B700E6F88B /* Charity.swift in Sources */,
 				0A05568825E5675200E6F88B /* Date.swift in Sources */,
+				0A0556B325E6B33C00E6F88B /* TagGrid.swift in Sources */,
+				0A0556A325E66A1600E6F88B /* LabeledText.swift in Sources */,
+				0A0556B525E6E4EB00E6F88B /* TaskListView.swift in Sources */,
+				0A0556A925E680B300E6F88B /* AddTag.swift in Sources */,
+				0A0556A125E664F000E6F88B /* CharityView.swift in Sources */,
 				0A05568325E558BC00E6F88B /* TextEditorField.swift in Sources */,
 				0A05567325E5141200E6F88B /* Renewal.swift in Sources */,
 				0A05567125E50D4700E6F88B /* Task.swift in Sources */,

@@ -24,5 +24,6 @@ class Charity: ObservableObject, Identifiable {
         self._id = _id
         self.name = name
         self.descriptionText = descriptionText
+        self.website = website
     }
 }

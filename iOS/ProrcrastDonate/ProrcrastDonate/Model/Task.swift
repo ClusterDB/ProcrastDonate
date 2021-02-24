@@ -17,7 +17,7 @@ class Task: ObservableObject, Identifiable {
     @Published var cancelDate: Date?
     @Published var renewals = [Renewal]()
     @Published var deadlineDate = Date().addingTimeInterval(86400)
-    @Published var donateOnFailure = true
+    @Published var donateOnFailure = false
     @Published var donationAmount: Int = 0
     @Published var charity: BSONObjectID?
     @Published var tags = [String]()

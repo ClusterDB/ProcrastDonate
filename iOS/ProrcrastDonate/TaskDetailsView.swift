@@ -8,47 +8,86 @@
 import SwiftUI
 
 struct TaskDetailsView: View {
-    @EnvironmentObject var state: AppState
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var task: Task
-
+    
+    @State var showingTagInput = false
+    @State var newTag = ""
+    
+    let tagRows = [
+        GridItem(.adaptive(minimum: 80))
+    ]
+    
+    // TODO: Add a "Done" button that send the updated task to the backend
     var body: some View {
-        VStack {
-            InputField(title: "Task Name", text: $task.title)
-            TextEditorField(title: "Task Description", text: $task.descriptionText)
-            Group {
-                CaptionLabel("Dates")
-                DatePicker(selection: $task.startDate) {
-                    Text("Start")
+        NavigationView {
+            VStack {
+                InputField(title: "Task Name", text: $task.title)
+                TextEditorField(title: "Task Description", text: $task.descriptionText)
+                Group {
+                    CaptionLabel("Dates")
+                    DatePicker(selection: $task.startDate) {
+                        Text("Start")
+                    }
+                    DatePicker(selection: $task.deadlineDate) {
+                        Text("Deadline")
+                    }
+                    if let completedDate = task.completedDate {
+                        LabelledDate(title: "Completed", date: completedDate)
+                    }
+                    if let cancelDate = task.cancelDate {
+                        LabelledDate(title: "Cancelled", date: cancelDate)
+                    }
                 }
-                DatePicker(selection: $task.deadlineDate) {
-                    Text("Deadline")
+                Group {
+                    CaptionLabel("Donation")
+                    Toggle("Make donation when task expires", isOn: $task.donateOnFailure)
+                    if task.donateOnFailure {
+                        NumberInputField(title: "Donation Amount", value: $task.donationAmount)
+                        CharityView(charityID: $task.charity)
+                    }
                 }
-                if let completedDate = task.completedDate {
-                    LabelledDate(title: "Completed", date: completedDate)
+                Group {
+                    CaptionLabel("Tags")
+                    ScrollView {
+                        LazyVGrid(columns: tagRows, spacing: 8) {
+                            ForEach(task.tags, id: \.self) { tag in
+                                Tag(tag) {
+                                    task.tags = task.tags.filter { $0 != tag }
+                                }
+                            }
+                            AddTag {
+                                showingTagInput.toggle()
+                            }
+                        }
+                    }
+                    if showingTagInput {
+                        InputBox(placeholder: "New tag", newText: $newTag, action: addTag)
+                    }
                 }
-                if let cancelDate = task.cancelDate {
-                    LabelledDate(title: "Cancelled", date: cancelDate)
-                }
+                Spacer()
             }
-            Group {
-                CaptionLabel("Donation")
-                Toggle("Make donation when task expires", isOn: $task.donateOnFailure)
-                if task.donateOnFailure {
-                    NumberInputField(title: "Donation Amount", value: $task.donationAmount)
-                }
-            }
-            Spacer()
+            .padding()
+            .navigationBarTitle(task.title, displayMode: .inline)
+            .navigationBarItems(
+                trailing: Button(
+                    action: { self.presentationMode.wrappedValue.dismiss() }) { Text("Done") })
+            .animation(.easeIn)
         }
-        .padding()
-        .navigationBarTitle(task.title, displayMode: .inline)
     }
+    
+    func addTag() {
+        task.tags.append(newTag)
+        newTag = ""
+        showingTagInput = false
+    }
+    
 }
 
 struct TaskDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            TaskDetailsView(task: .sample3)
-                .environmentObject(AppState())
-        }
+//        NavigationView {
+            TaskDetailsView(task: .sample2)
+//        }
     }
 }

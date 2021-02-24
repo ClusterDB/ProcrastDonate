@@ -170,7 +170,7 @@ extension Task {
 }
 
 extension Task: Samplable {
-    static var samples: [Task] { [sample, sample2, sample3] }
+    static var samples: [Task] { [sample, sample2, sample3, sample4] }
     static var sample: Task {
         try! Task(
             _id: BSONObjectID("111456789012345678901234"),
@@ -202,7 +202,7 @@ extension Task: Samplable {
             deadlineDate: Date().addingTimeInterval(226400),
             donateOnFailure: false,
             donationAmount: 0,
-            tags: ["animals", "creepy"])
+            tags: ["animals", "creepy", "dark", "spooky", "sound", "flying", "animal", "rodent"])
     }
     static var sample3: Task {
         try! Task(
@@ -214,6 +214,20 @@ extension Task: Samplable {
             cancelDate: Date(),
             renewals: [],
             deadlineDate: Date().addingTimeInterval(126400),
+            donateOnFailure: true,
+            donationAmount: 10,
+            charity: Charity.sample3._id,
+            tags: ["developers"])
+    }
+    static var sample4: Task {
+        try! Task(
+            _id: BSONObjectID("444456789012345678901234"),
+            title: "Task 4 - probably overdue",
+            descriptionText: "Fourth task - This is an overdue task.",
+            startDate: Date().addingTimeInterval(-86400),
+            cancelDate: Date(),
+            renewals: [],
+            deadlineDate: Date().addingTimeInterval(-6400),
             donateOnFailure: true,
             donationAmount: 10,
             charity: Charity.sample3._id,

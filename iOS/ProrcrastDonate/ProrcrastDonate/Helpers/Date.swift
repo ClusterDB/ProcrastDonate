@@ -27,6 +27,13 @@ extension Date {
         formatter.timeStyle = .none
         return formatter.string(from: self)
     }
+    
+    func justDateInYear() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter.string(from: self)
+    }
 
     func justLongDate() -> String {
         let formatter = DateFormatter()

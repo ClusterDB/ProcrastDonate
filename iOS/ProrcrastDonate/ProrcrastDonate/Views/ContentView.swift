@@ -11,12 +11,12 @@ struct ContentView: View {
     @ObservedObject var task: Task
     
     init() {
-        task = Task.sample
+        task = Task.sample2
     }
     
     var body: some View {
         NavigationView {
-            TaskDetailsView(task: task)
+            TaskListView()
         }
     }
 }

@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct CheckBox: View {
-    var title: String
     @Binding var isChecked: Bool
+    var action: () -> Void = {}
 
     var body: some View {
         Button(action: { self.isChecked.toggle() }) {
-            HStack {
-                Image(systemName: isChecked ? "checkmark.square": "square")
-                Text(title)
-            }
-            .foregroundColor(isChecked ? .primary : .secondary)
+            Image(systemName: isChecked ? "checkmark.square": "square")
+                .padding(.vertical, 8)
         }
+        .buttonStyle(PlainButtonStyle())
+        .foregroundColor(.primary)
     }
 }
 
@@ -26,11 +25,11 @@ struct CheckBox_Previews: PreviewProvider {
     static var previews: some View {
         AppearancePreviews(
             VStack {
-                CheckBox(title: "Test checkbox", isChecked: .constant(true))
-                CheckBox(title: "Test checkbox", isChecked: .constant(false))
+                CheckBox(isChecked: .constant(true))
+                CheckBox(isChecked: .constant(false))
             }
         )
-        .padding()
         .previewLayout(.sizeThatFits)
+        .padding()
     }
 }
