@@ -312,8 +312,21 @@ Parameters:
   depending on the value of `sort-by`. Used for pagination.
 
 ### POST
-Creates a new sponsorship for the given user. The body of the request must contain the task id being sponsored and the 
-dollar amount at stake.
+Creates a new sponsorship for the user. Body must contain an extended JSON object with the following form:
+
+```
+{
+    "task": <ObjectID>,
+    "comment": <String>,
+    "donationAmount": {
+        "amount": <positive integer>,
+        "currency": "USD",
+    },
+}
+```
+
+Note: a user will only be allowed to sponsor a given task once. A unique index on the `task` field in the `sponsorship`
+collection will enforce this.
 
 ## /users/\<username\>/activity
 Retrieves the timeline of recent activity by this user. This includes entries for any of the above event types

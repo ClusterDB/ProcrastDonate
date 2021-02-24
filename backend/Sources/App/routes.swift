@@ -58,5 +58,7 @@ func routes(_ app: Application) throws {
 
     app.get("users", ":userid", "tasks", use: decorateUserRequestHandler(UserTasks.get))
     app.post("users", ":userid", "tasks", use: decorateUserRequestHandler(UserTasks.post))
+
     app.get("users", ":userid", "sponsorships", use: decorateUserRequestHandler(UserSponsorships.get))
+    app.post("users", ":userid", "sponsorships", use: decorateUserRequestHandler(UserSponsorships.post))
 }

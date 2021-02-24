@@ -40,4 +40,8 @@ struct Task: Content {
         self.charity = charity
         self.tags = tags
     }
+
+    var isActive: Bool {
+        self.deadlineDate > Date() && self.cancelDate == nil && self.completedDate == nil
+    }
 }

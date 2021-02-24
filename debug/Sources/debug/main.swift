@@ -24,11 +24,59 @@ let sponsorships = db.collection("sponsorship")
 
 let userID = BSON.objectID(try BSONObjectID("60355415865cbf06d56935d8"))
 let charityID = BSON.objectID()
+let taskID = BSON.objectID()
 
 try getSponsorships()
+try newSponsorship()
+try getSponsorships(shouldPopulate: false)
 
-func getSponsorships() throws {
-    try populate()
+func newSponsorship() throws {
+    print("creating new sponsorship...")
+    let newSponsorship: BSONDocument = [
+        "task": taskID,
+        "comment": "you can do it!!",
+        "donationAmount": [
+            "amount": 10000, // $10
+            "currency": "USD",
+        ],
+    ]
+
+    let url = URL(string: "http://127.0.0.1:8080/users/60355415865cbf06d56935d8/sponsorships")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    let data = try ExtendedJSONEncoder().encode(newSponsorship)
+
+    let session = URLSession.shared
+    let task = session.uploadTask(with: request, from: data) { data, response, error in
+        if let error = error {
+            print("got error: \(error)")
+            return
+        }
+
+        guard let response = response as? HTTPURLResponse else {
+            print("no response")
+            return
+        }
+
+        print("got response status code: \(response.statusCode)")
+        if
+            let mimeType = response.mimeType,
+            mimeType == "application/json",
+            let data = data,
+            let dataString = data.prettyPrintedJSONString
+        {
+            print(dataString)
+        }
+    }
+    task.resume()
+    sleep(5)
+}
+
+func getSponsorships(shouldPopulate: Bool = true) throws {
+    if shouldPopulate {
+        try populate()
+    }
 
     let url = URL(string: "http://127.0.0.1:8080/users/60355415865cbf06d56935d8/sponsorships?sort-by=latest-start")!
     var request = URLRequest(url: url)
@@ -137,7 +185,6 @@ func populate() throws {
         "website": "www.mongodb.com",
     ]
 
-    let taskID = BSON.objectID()
     let task: BSONDocument = [
         "_id": taskID,
         "title": "generic todo item",

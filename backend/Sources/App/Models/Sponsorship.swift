@@ -11,6 +11,17 @@ struct Sponsorship: Codable {
     let startDate: Date
     let cancelDate: Date?
     let settled: Bool
+
+    init(from newSponsorship: NewSponsorship, sponsor: BSONObjectID) {
+        self._id = BSONObjectID()
+        self.task = newSponsorship.task
+        self.sponsor = sponsor
+        self.comment = newSponsorship.comment
+        self.donationAmount = newSponsorship.donationAmount
+        self.startDate = Date()
+        self.cancelDate = nil
+        self.settled = false
+    }
 }
 
 struct SponsorshipContent: Content {
@@ -21,4 +32,10 @@ struct SponsorshipContent: Content {
     let startDate: Date
     let cancelDate: Date?
     let settled: Bool
+}
+
+struct NewSponsorship: Content {
+    let task: BSONObjectID
+    let comment: String
+    let donationAmount: MonetaryValue
 }
