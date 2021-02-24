@@ -9,6 +9,8 @@ public func configure(_ app: Application) throws {
 
     ContentConfiguration.global.use(encoder: ExtendedJSONEncoder(), for: .json)
     ContentConfiguration.global.use(decoder: ExtendedJSONDecoder(), for: .json)
+    let urlDecoder = URLEncodedFormDecoder(configuration: .init(dateDecodingStrategy: .iso8601))
+    ContentConfiguration.global.use(urlDecoder: urlDecoder)
 
     guard let connectionString = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_URI"] else {
         fatalError("no MongoDB connection string provided in PROCRSATDONATE_DB_URI environment variable")

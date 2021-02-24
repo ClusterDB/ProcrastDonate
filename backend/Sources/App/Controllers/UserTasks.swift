@@ -30,7 +30,7 @@ struct TaskQueryOptions: Content {
 
     /// Either the latest possible start date or the earliest possible deadline, depending on sortBy.
     /// Must be a valid ISO-8601 formatted string.
-    let dateDelimeter: String?
+    let dateDelimeter: Date?
 
     enum CodingKeys: String, CodingKey {
         case activeOnly = "active-only"
@@ -42,64 +42,18 @@ struct TaskQueryOptions: Content {
 
 /// Controller for /users/<username>/tasks route.
 internal enum UserTasks {
-    static func userId(req: Request) throws -> BSONObjectID {
-        try BSONObjectID(req.parameters.get("userid")!)
-    }
-
     /// GET handler.
     /// Returns a list of tasks for the user according to the provided query options.
-    static func get(req: Request) throws -> EventLoopFuture<[Task]> {
-        let queryOptions = try req.query.decode(TaskQueryOptions.self)
-        let userID = try UserTasks.userId(req: req)
-        let startDate = Date()
-
-        // this value will be used as either the latest start date or the earliest deadline, depending on sortBy
-        let dateDelimeter: Date
-        if let rawDate = queryOptions.dateDelimeter {
-            guard let parsed = dateFormatter.date(from: rawDate) else {
-                throw MyError(description: "\(rawDate) invalid date str")
-            }
-            dateDelimeter = parsed
-        } else {
-            dateDelimeter = startDate
-        }
+    static func get(userID: BSONObjectID, req: Request) throws -> EventLoopFuture<[Task]> {
+        let queryOptions = try req.query.decode(QueryOptions.self)
 
         var filter: BSONDocument = [
             "user": .objectID(userID),
         ]
-        let sortDocument: BSONDocument
-
-        switch queryOptions.sortBy {
-        case .latestStart:
-            guard dateDelimeter <= startDate else {
-                throw MyError(description: "when sorting by latestStart, delimeter must be in past")
-            }
-            filter["startDate"] = ["$lt": .datetime(dateDelimeter)]
-            sortDocument = ["startDate": -1]
-        case .earliestDeadline:
-            guard dateDelimeter >= startDate else {
-                throw MyError(description: "when sorting by earliestDeadline, delimeter must be in future")
-            }
-            filter["deadlineDate"] = ["$gt": .datetime(dateDelimeter)]
-            sortDocument = ["deadlineDate": 1]
-        }
+        try queryOptions.updateFilter(&filter)
 
         var findOptions = FindOptions()
-        findOptions.sort = sortDocument
-
-        if queryOptions.activeOnly == true {
-            filter["completedDate"] = ["$exists": false]
-            filter["cancelledDate"] = ["$exists": false]
-
-            switch queryOptions.sortBy {
-            case .latestStart:
-                filter["deadlineDate"] = ["$gt": .datetime(Date())]
-            case .earliestDeadline:
-                // if we're sorting by earliest deadline, filter already guarantees we're only looking at
-                // active tasks
-                break
-            }
-        }
+        findOptions.sort = queryOptions.makeSortDocument()
 
         if let limit = queryOptions.limit {
             guard limit > 0 else {
@@ -124,9 +78,8 @@ internal enum UserTasks {
         let tags: [String]
     }
 
-    static func post(req: Request) throws -> EventLoopFuture<HTTPStatus> {
+    static func post(userID: BSONObjectID, req: Request) throws -> EventLoopFuture<HTTPStatus> {
         let newTask = try req.content.decode(NewTask.self)
-        let userID = try UserTasks.userId(req: req)
 
         guard newTask.deadlineDate > Date() else {
             throw MyError(description: "Invalid deadline date, must be in the future")

@@ -26,11 +26,46 @@ let db = client.db("dev")
 let tasks = db.collection("task")
 let users = db.collection("user")
 let charities = db.collection("charity")
+let sponsorships = db.collection("sponsorship")
 
 let userID = BSON.objectID(try BSONObjectID("60355415865cbf06d56935d8"))
 let charityID = BSON.objectID()
 
-try newTask()
+try getSponsorships()
+
+func getSponsorships() throws {
+    try populate()
+
+    let url = URL(string: "http://127.0.0.1:8080/users/60355415865cbf06d56935d8/sponsorships?sort-by=latest-start")!
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+
+    let session = URLSession.shared
+    let task = session.dataTask(with: request) { data, response, error in
+        if let error = error {
+            print("got error: \(error)")
+            return
+        }
+
+        guard let response = response as? HTTPURLResponse else {
+            print("no response")
+            return
+        }
+
+        print("got response status code: \(response.statusCode)")
+        if
+            let mimeType = response.mimeType,
+            mimeType == "application/json",
+            let data = data,
+            let dataString = data.prettyPrintedJSONString
+        {
+            print(dataString)
+            
+        }
+    }
+    task.resume()
+    sleep(5)
+}
 
 /// Use the REST API to create a new task.
 func newTask() throws {
@@ -73,9 +108,9 @@ func newTask() throws {
             let mimeType = response.mimeType,
             mimeType == "application/json",
             let data = data,
-            let dataString = String(data: data, encoding: .utf8)
+            let dataString = data.prettyPrintedJSONString
         {
-            print ("got data: \(dataString)")
+            print(dataString)
             
         }
     }
@@ -110,8 +145,9 @@ func populate() throws {
         "website": "www.mongodb.com"
     ]
 
+    let taskID = BSON.objectID()
     let task: BSONDocument = [
-        "_id": .objectID(),
+        "_id": taskID,
         "title": "generic todo item",
         "user": userID,
         "descriptionText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -139,10 +175,38 @@ func populate() throws {
         "tags": ["completed"],
     ]
 
+    let sponsorship: BSONDocument = [
+        "_id": .objectID(),
+        "task": taskID,
+        "sponsor": userID,
+        "comment": "you can do it!",
+        "donationAmount": [
+            "amount": 500,
+            "currency": "USD"
+        ],
+        "startDate": .datetime(Date()),
+        "settled": false
+    ]
+
     print("inserting...")
     try charities.insertOne(charity)
     try users.insertOne(user)
     try tasks.insertOne(task)
     try tasks.insertOne(completedTask)
+    try sponsorships.insertOne(sponsorship)
     print("done!")
+}
+
+extension Data {
+    /// From: https://gist.github.com/cprovatas/5c9f51813bc784ef1d7fcbfb89de74fe
+    var prettyPrintedJSONString: NSString? { /// NSString gives us a nice sanitized debugDescription
+        guard
+            let object = try? JSONSerialization.jsonObject(with: self, options: []),
+            let data = try? JSONSerialization.data(withJSONObject: object, options: [.prettyPrinted]),
+            let prettyPrintedString = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+        else {
+            return nil
+        }
+        return prettyPrintedString
+    }
 }

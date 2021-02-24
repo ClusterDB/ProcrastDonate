@@ -5,6 +5,9 @@ struct MyError: Error {
     let description: String
 }
 
+private typealias RequestHandler<T> = (Request) throws -> EventLoopFuture<T>
+private typealias UserRequestHandler<T> = (BSONObjectID, Request) throws -> EventLoopFuture<T>
+
 extension Request {
     var db: MongoDatabase {
         let options = MongoDatabaseOptions(writeConcern: .majority)
@@ -22,6 +25,20 @@ extension Request {
     var charities: MongoCollection<Charity> {
         self.db.collection("charity", withType: Charity.self)
     }
+
+    var sponsorships: MongoCollection<Sponsorship> {
+        self.db.collection("sponsorship", withType: Sponsorship.self)
+    }
+}
+
+private func decorateUserRequestHandler<T>(
+    _ f: @escaping UserRequestHandler<T>
+) -> RequestHandler<T> {
+    func decorated(req: Request) throws -> EventLoopFuture<T> {
+        let id = try BSONObjectID(req.parameters.get("userid")!)
+        return try f(id, req)
+    }
+    return decorated
 }
 
 func routes(_ app: Application) throws {
@@ -39,6 +56,7 @@ func routes(_ app: Application) throws {
         }
     }
 
-    app.get("users", ":userid", "tasks", use: UserTasks.get)
-    app.post("users", ":userid", "tasks", use: UserTasks.post)
+    app.get("users", ":userid", "tasks", use: decorateUserRequestHandler(UserTasks.get))
+    app.post("users", ":userid", "tasks", use: decorateUserRequestHandler(UserTasks.post))
+    app.get("users", ":userid", "sponsorships", use: decorateUserRequestHandler(UserSponsorships.get))
 }
