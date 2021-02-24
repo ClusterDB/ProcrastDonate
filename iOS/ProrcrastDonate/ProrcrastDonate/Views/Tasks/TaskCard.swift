@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TaskCard: View {
     @ObservedObject var task: Task
+    var action: () -> Void = {}
     
     @State private var showingDetails = false
     
@@ -48,6 +49,7 @@ struct TaskCard: View {
         }
         .onChange(of: showingDetails, perform: { value in
             if !value {
+                action()
                 updateBackend()
             }
         })

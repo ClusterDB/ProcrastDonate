@@ -23,6 +23,7 @@ class Task: ObservableObject, Identifiable {
     @Published var tags = [String]()
     
     var id: String { _id.description }
+    var completed: Bool { completedDate != nil }
 
     convenience init(
         _id: BSONObjectID = BSONObjectID(),
