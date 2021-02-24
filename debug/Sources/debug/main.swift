@@ -9,17 +9,11 @@ let dateFormatter: ISO8601DateFormatter = {
     return formatter
 }()
 
-guard let password = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_PASSWORD"] else {
-    fatalError("no password")
+guard let connectionString = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_URI"] else {
+    fatalError("no MongoDB connection string provided in PROCRSATDONATE_DB_URI environment variable")
 }
 
-guard let username = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_USERNAME"] else {
-    fatalError("no password")
-}
-
-print("username: \(username)")
-
-let client = try MongoClient("mongodb+srv://\(username):\(password)@procrastdonate.sbdbz.mongodb.net")
+let client = try MongoClient(connectionString)
 
 let db = client.db("dev")
 
