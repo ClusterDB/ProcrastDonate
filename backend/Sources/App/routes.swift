@@ -34,5 +34,5 @@ func routes(_ app: Application) throws {
         }
     }
 
-    app.get("users", ":userid", "tasks", use: userTasks)
+    app.get("users", ":userid", "tasks", use: UserTasks.get)
 }

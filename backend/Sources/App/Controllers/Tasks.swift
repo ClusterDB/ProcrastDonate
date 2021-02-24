@@ -40,70 +40,72 @@ struct TaskQueryOptions: Content {
     }
 }
 
-/// /users/<username>/tasks route handler.
-/// Returns a list of tasks for the user according to the provided query options.
-func userTasks(req: Request) throws -> EventLoopFuture<[Task]> {
-    let queryOptions = try req.query.decode(TaskQueryOptions.self)
-    let userID = try BSONObjectID(req.parameters.get("userid")!)
-    let startDate = Date()
+/// Controller for /users/<username>/tasks route.
+internal enum UserTasks {
+    /// GET handler.
+    /// Returns a list of tasks for the user according to the provided query options.
+    static func get(req: Request) throws -> EventLoopFuture<[Task]> {
+        let queryOptions = try req.query.decode(TaskQueryOptions.self)
+        let userID = try BSONObjectID(req.parameters.get("userid")!)
+        let startDate = Date()
 
-    // this value will be used as either the latest start date or the earliest deadline, depending on sortBy
-    let dateDelimeter: Date
-    if let rawDate = queryOptions.dateDelimeter {
-        guard let parsed = dateFormatter.date(from: rawDate) else {
-            throw MyError(description: "\(rawDate) invalid date str")
+        // this value will be used as either the latest start date or the earliest deadline, depending on sortBy
+        let dateDelimeter: Date
+        if let rawDate = queryOptions.dateDelimeter {
+            guard let parsed = dateFormatter.date(from: rawDate) else {
+                throw MyError(description: "\(rawDate) invalid date str")
+            }
+            dateDelimeter = parsed
+        } else {
+            dateDelimeter = startDate
         }
-        dateDelimeter = parsed
-    } else {
-        dateDelimeter = startDate
-    }
 
-    var filter: BSONDocument = [
-        "user": .objectID(userID),
-    ]
-    let sortDocument: BSONDocument
-
-    switch queryOptions.sortBy {
-    case .latestStart:
-        guard dateDelimeter <= startDate else {
-            throw MyError(description: "when sorting by latestStart, delimeter must be in past")
-        }
-        filter["startDate"] = ["$lt": .datetime(dateDelimeter)]
-        sortDocument = ["startDate": -1]
-    case .earliestDeadline:
-        guard dateDelimeter >= startDate else {
-            throw MyError(description: "when sorting by earliestDeadline, delimeter must be in future")
-        }
-        filter["deadlineDate"] = ["$gt": .datetime(dateDelimeter)]
-        sortDocument = ["deadlineDate": 1]
-    }
-    print(filter)
-
-    var findOptions = FindOptions()
-    findOptions.sort = sortDocument
-    
-    if queryOptions.activeOnly == true {
-        filter["completedDate"] =  ["$exists": false]
-        filter["cancelledDate"] =  ["$exists": false]
+        var filter: BSONDocument = [
+            "user": .objectID(userID),
+        ]
+        let sortDocument: BSONDocument
 
         switch queryOptions.sortBy {
         case .latestStart:
-            filter["deadlineDate"] =  ["$gt": .datetime(Date())]
+            guard dateDelimeter <= startDate else {
+                throw MyError(description: "when sorting by latestStart, delimeter must be in past")
+            }
+            filter["startDate"] = ["$lt": .datetime(dateDelimeter)]
+            sortDocument = ["startDate": -1]
         case .earliestDeadline:
-            // if we're sorting by earliest deadline, filter already guarantees we're only looking at
-            // active tasks
-            break
+            guard dateDelimeter >= startDate else {
+                throw MyError(description: "when sorting by earliestDeadline, delimeter must be in future")
+            }
+            filter["deadlineDate"] = ["$gt": .datetime(dateDelimeter)]
+            sortDocument = ["deadlineDate": 1]
         }
-    }
 
-    if let limit = queryOptions.limit {
-        guard limit > 0 else {
-            throw Abort(.notFound)
+        var findOptions = FindOptions()
+        findOptions.sort = sortDocument
+        
+        if queryOptions.activeOnly == true {
+            filter["completedDate"] =  ["$exists": false]
+            filter["cancelledDate"] =  ["$exists": false]
+
+            switch queryOptions.sortBy {
+            case .latestStart:
+                filter["deadlineDate"] =  ["$gt": .datetime(Date())]
+            case .earliestDeadline:
+                // if we're sorting by earliest deadline, filter already guarantees we're only looking at
+                // active tasks
+                break
+            }
         }
-        findOptions.limit = limit
-    }
 
-    return req.tasks.find(filter, options: findOptions).flatMap { cursor in
-        cursor.toArray()
+        if let limit = queryOptions.limit {
+            guard limit > 0 else {
+                throw Abort(.notFound)
+            }
+            findOptions.limit = limit
+        }
+
+        return req.tasks.find(filter, options: findOptions).flatMap { cursor in
+            cursor.toArray()
+        }
     }
 }
