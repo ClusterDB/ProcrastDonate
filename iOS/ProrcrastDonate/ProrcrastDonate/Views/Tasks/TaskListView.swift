@@ -52,7 +52,7 @@ struct TaskListView: View {
                 return right.completed
             }
             if left.completed {
-                return left.completedDate ?? left.deadlineDate < right.completedDate ?? left.deadlineDate
+                return left.completedDate ?? left.deadlineDate > right.completedDate ?? left.deadlineDate
             }
             return left.deadlineDate < right.deadlineDate
         }

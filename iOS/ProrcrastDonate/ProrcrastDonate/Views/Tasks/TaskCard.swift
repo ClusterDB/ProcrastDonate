@@ -56,6 +56,7 @@ struct TaskCard: View {
     }
     
     func updateBackend() {
+        action()
         // TODO: Send update to API
         print("Updating backend")
     }
