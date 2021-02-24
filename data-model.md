@@ -2,7 +2,7 @@
 # ProcrastDonate data model:
 
 This section outlines the schemas of the various collections to be stored in MongoDB. See the [REST API
-Routes](#rest-api-routes) section for information on how the data is to be accessed via the client(s).
+Endpoints](#rest-api-endpoints) section for information on how the data is to be accessed via the client(s).
 
 ## `user` collection
 Stores user account information, such as name, email, password, etc.
@@ -55,7 +55,10 @@ Stores all tasks, including completed tasks.
       }
     ],
     deadlineDate: <datetime>,
-    donationAmount: <number>,
+    donationAmount: {
+        amount: <positive integer>,
+        currency: <string>
+    },
     donateOnFailure: <boolean>,
     charity: <ObjectID>,
     tags: [<string>],
@@ -93,7 +96,10 @@ Stores the metadata associated with a user sponsoring a task to be completed by 
     task: <ObjectID>,
     sponsor: <ObjectID>,
     comment: <string>,
-    donationAmount: <number>,
+    donationAmount: {
+        amount: <positive integer>,
+        currency: <string>
+    },
     startDate: <datetime>,
     cancelDate: <datetime or null>,
     settled: <boolean>,
@@ -242,15 +248,36 @@ expected format of the input for the state-modifying requests.
 - **POST**: create a new friend request
 
 ## /users/\<username\>/tasks
+
+### GET
 Retrieves the current list of tasks for a given user. Each task info includes an id, title, description, deadline,
 donation recipient(s), and tag(s).
 
 Parameters:
 - **active**: if "t", then only return active tasks
 - **limit**: number, the max number of tasks to return
-- **sort-by**: "deadline" | "start" (default) - return in order of nearest deadlines or most recent start date.
+- **sort-by**: "earliest-deadline" | "latest-start" (default) - return in order of nearest deadlines or most recent start date.
 - **date-delimiter**: an ISO-8601 formatted date marking the latest possible start date or oldest possible deadline,
   depending on the value of `sort-by`. Used for pagination.
+
+### POST
+
+Creates a new task for the user. Body must contain an extended JSON object with the following form:
+
+```
+{
+    "title": <string>,
+    "descriptionText": <string>,
+    "deadlineDate": <datetime>,
+    "donationAmount": {
+        "amount": <positive integer>,
+        "currency": "USD", // TODO: support more currencies
+    },
+    donationOnFailure: <boolean>,
+    charity: <ObjectID>,
+    tags: [ <string> ],
+}
+```
 
 ## /users/\<username\>/sponsorships
 ### GET
@@ -260,7 +287,7 @@ returning its _id to reduce the network round trips.
 Parameters:
 - **active**: if "t", then only return active tasks
 - **limit**: number, the max number of tasks to return
-- **sort-by**: "deadline" | "start" (default) - return in order of nearest deadlines or most recent start date.
+- **sort-by**: "earliest-deadline" | "latest-start" (default) - return in order of nearest deadlines or most recent start date.
 - **date-delimiter**: an ISO-8601 formatted date marking the latest possible start date or oldest possible deadline,
   depending on the value of `sort-by`. Used for pagination.
 
@@ -279,7 +306,6 @@ Parameters:
 
 ## /tasks/\<task-id\>
 - **GET**: Retrieves the information about an individual task.
-- **POST**: Creates a new task.
 - **PATCH**: Updates a given task. This can renew the task, cancel it, or modify one of its fields.
    
 ## /tasks/\<task-id\>/activity
