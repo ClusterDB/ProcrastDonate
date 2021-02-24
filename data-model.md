@@ -19,6 +19,10 @@ Stores user account information, such as name, email, password, etc.
 }
 ```
 
+Indexes:
+- `username`: _unique_
+- `email`: _unique_
+
 ## `friend_request` collection
 Stores all the outstanding friend requests.
 
@@ -30,6 +34,9 @@ Stores all the outstanding friend requests.
     requestDate: <datetime>,
 }
 ```
+
+Indexes:
+- `requester`, `recipient`: _unique_
 
 ## `task` collection
 Stores all tasks, including completed tasks.
@@ -73,6 +80,11 @@ Notes:
   - **donateOnFailure**: a user may elect to flip the outcomes: when completing the task successfully, money is
   donated to charity / when the task is failed no donation is made. We should consider making this the default
   actually so as to avoid making donating to charity as a negative outcome.
+  
+Indexes:
+- `user`
+- `deadlineDate`
+- `startDate`
 
 ## `charity` collection
 Stores information about registered charities. In the future, this will also include any metadata required to
@@ -105,6 +117,10 @@ Stores the metadata associated with a user sponsoring a task to be completed by 
     settled: <boolean>,
 }
 ```
+
+Indexes:
+- `sponsor`, `task`: _unique_
+- `startDate`
    
 ## `event` collection 
 Stores all the events that show up on users timelines. This will likely be populated via a change stream sitting on
@@ -120,6 +136,10 @@ its own thread.
     ...
 }
 ```
+
+Indexes:
+- `user`
+- `date`
    
 Depending on the eventType, the rest of the fields have the following forms:
 
