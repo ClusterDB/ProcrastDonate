@@ -10,15 +10,11 @@ public func configure(_ app: Application) throws {
     ContentConfiguration.global.use(encoder: ExtendedJSONEncoder(), for: .json)
     ContentConfiguration.global.use(decoder: ExtendedJSONDecoder(), for: .json)
 
-    guard let password = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_PASSWORD"] else {
-        fatalError("no password")
+    guard let connectionString = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_URI"] else {
+        fatalError("no MongoDB connection string provided in PROCRSATDONATE_DB_URI environment variable")
     }
 
-    guard let username = ProcessInfo.processInfo.environment["PROCRASTDONATE_DB_USERNAME"] else {
-        fatalError("no password")
-    }
-
-    try app.mongoDB.configure("mongodb+srv://\(username):\(password)@procrastdonate.sbdbz.mongodb.net")
+    try app.mongoDB.configure(connectionString)
 
     // register routes
     try routes(app)
