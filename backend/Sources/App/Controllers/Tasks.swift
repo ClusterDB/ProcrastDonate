@@ -1,6 +1,6 @@
 import Foundation
-import Vapor
 import MongoDBVapor
+import Vapor
 
 let dateFormatter: ISO8601DateFormatter = {
     let formatter = ISO8601DateFormatter()
@@ -86,14 +86,14 @@ internal enum UserTasks {
 
         var findOptions = FindOptions()
         findOptions.sort = sortDocument
-        
+
         if queryOptions.activeOnly == true {
-            filter["completedDate"] =  ["$exists": false]
-            filter["cancelledDate"] =  ["$exists": false]
+            filter["completedDate"] = ["$exists": false]
+            filter["cancelledDate"] = ["$exists": false]
 
             switch queryOptions.sortBy {
             case .latestStart:
-                filter["deadlineDate"] =  ["$gt": .datetime(Date())]
+                filter["deadlineDate"] = ["$gt": .datetime(Date())]
             case .earliestDeadline:
                 // if we're sorting by earliest deadline, filter already guarantees we're only looking at
                 // active tasks
@@ -147,7 +147,8 @@ internal enum UserTasks {
                 donationAmount: newTask.donationAmount,
                 donateOnFailure: newTask.donationOnFailure,
                 charity: newTask.charity,
-                tags: newTask.tags)
+                tags: newTask.tags
+            )
             return req.tasks.insertOne(fullTask).map { _ in HTTPStatus.ok }
         }
     }

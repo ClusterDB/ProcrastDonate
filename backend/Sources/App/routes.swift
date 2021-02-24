@@ -1,5 +1,5 @@
-import Vapor
 import MongoDBVapor
+import Vapor
 
 struct MyError: Error {
     let description: String
@@ -8,7 +8,7 @@ struct MyError: Error {
 extension Request {
     var db: MongoDatabase {
         let options = MongoDatabaseOptions(writeConcern: .majority)
-        return self.mongoDB.client.db("dev", options: options)
+        return mongoDB.client.db("dev", options: options)
     }
 
     var tasks: MongoCollection<Task> {
@@ -25,8 +25,8 @@ extension Request {
 }
 
 func routes(_ app: Application) throws {
-    app.get { req in
-        return "It works!"
+    app.get { _ in
+        "It works!"
     }
 
     app.get("users", ":userid") { req -> EventLoopFuture<UserContent> in

@@ -1,6 +1,6 @@
 struct MonetaryValue: Codable {
     enum Currency: String, Codable {
-        case USD = "USD"
+        case USD
     }
 
     /// 1/100th units of the given currency. e.g. 1 cent in USD

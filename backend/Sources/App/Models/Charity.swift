@@ -1,5 +1,5 @@
-import MongoDBVapor
 import Foundation
+import MongoDBVapor
 
 struct Charity: Codable {
     let _id: BSONObjectID

@@ -1,5 +1,5 @@
-import MongoDBVapor
 import Foundation
+import MongoDBVapor
 import Vapor
 
 struct Task: Content {
