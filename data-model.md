@@ -254,7 +254,7 @@ Retrieves the current list of tasks for a given user. Each task info includes an
 donation recipient(s), and tag(s).
 
 Parameters:
-- **active**: if "t", then only return active tasks
+- **active-only**: if "t", then only return active tasks
 - **limit**: number, the max number of tasks to return
 - **sort-by**: "earliest-deadline" | "latest-start" (default) - return in order of nearest deadlines or most recent start date.
 - **date-delimiter**: an ISO-8601 formatted date marking the latest possible start date or oldest possible deadline,
@@ -285,7 +285,7 @@ Retrieves a list of sponsorships by the user. This will perform a `$lookup` to f
 returning its _id to reduce the network round trips.
 
 Parameters:
-- **active**: if "t", then only return active tasks
+- **active-only**: if "t", then only return active tasks
 - **limit**: number, the max number of tasks to return
 - **sort-by**: "earliest-deadline" | "latest-start" (default) - return in order of nearest deadlines or most recent start date.
 - **date-delimiter**: an ISO-8601 formatted date marking the latest possible start date or oldest possible deadline,
