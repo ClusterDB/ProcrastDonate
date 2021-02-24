@@ -6,6 +6,7 @@ import Vapor
 public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+
     ContentConfiguration.global.use(encoder: ExtendedJSONEncoder(), for: .json)
     ContentConfiguration.global.use(decoder: ExtendedJSONDecoder(), for: .json)
 
@@ -17,7 +18,7 @@ public func configure(_ app: Application) throws {
         fatalError("no password")
     }
 
-    try app.mongoDB.configure("mongodb+srv://\(username):\(password)@procrastdonate.sbdbz.mongodb.net/myFirstDatabase")
+    try app.mongoDB.configure("mongodb+srv://\(username):\(password)@procrastdonate.sbdbz.mongodb.net")
 
     // register routes
     try routes(app)

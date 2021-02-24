@@ -248,7 +248,7 @@ donation recipient(s), and tag(s).
 Parameters:
 - **active**: if "t", then only return active tasks
 - **limit**: number, the max number of tasks to return
-- **sort-by**: "deadline" | "start" (default) - return in order of nearest deadlines or most recent start date.
+- **sort-by**: "earliest-deadline" | "latest-start" (default) - return in order of nearest deadlines or most recent start date.
 - **date-delimiter**: an ISO-8601 formatted date marking the latest possible start date or oldest possible deadline,
   depending on the value of `sort-by`. Used for pagination.
 
@@ -260,7 +260,7 @@ returning its _id to reduce the network round trips.
 Parameters:
 - **active**: if "t", then only return active tasks
 - **limit**: number, the max number of tasks to return
-- **sort-by**: "deadline" | "start" (default) - return in order of nearest deadlines or most recent start date.
+- **sort-by**: "earliest-deadline" | "latest-start" (default) - return in order of nearest deadlines or most recent start date.
 - **date-delimiter**: an ISO-8601 formatted date marking the latest possible start date or oldest possible deadline,
   depending on the value of `sort-by`. Used for pagination.
 
