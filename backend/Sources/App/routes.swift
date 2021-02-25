@@ -7,6 +7,7 @@ struct MyError: Error {
 
 private typealias RequestHandler<T> = (Request) throws -> EventLoopFuture<T>
 private typealias UserRequestHandler<T> = (BSONObjectID, Request) throws -> EventLoopFuture<T>
+private typealias TaskRequestHandler<T> = (BSONObjectID, Request) throws -> EventLoopFuture<T>
 
 extension Request {
     var db: MongoDatabase {
@@ -41,6 +42,16 @@ private func decorateUserRequestHandler<T>(
     return decorated
 }
 
+private func decorateTaskRequestHandler<T>(
+    _ f: @escaping UserRequestHandler<T>
+) -> RequestHandler<T> {
+    func decorated(req: Request) throws -> EventLoopFuture<T> {
+        let id = try BSONObjectID(req.parameters.get("taskid")!)
+        return try f(id, req)
+    }
+    return decorated
+}
+
 func routes(_ app: Application) throws {
     app.get { _ in
         "It works!"
@@ -61,4 +72,6 @@ func routes(_ app: Application) throws {
 
     app.get("users", ":userid", "sponsorships", use: decorateUserRequestHandler(UserSponsorships.get))
     app.post("users", ":userid", "sponsorships", use: decorateUserRequestHandler(UserSponsorships.post))
+
+    app.patch("tasks", ":taskid", use: decorateTaskRequestHandler(Tasks.patch))
 }

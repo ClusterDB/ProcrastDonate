@@ -338,8 +338,15 @@ Parameters:
 - **friends**: if "t", then include the activity of the friends of the user.
 
 ## /tasks/\<task-id\>
-- **GET**: Retrieves the information about an individual task.
-- **PATCH**: Updates a given task. This can renew the task, cancel it, or modify one of its fields.
+### GET 
+Retrieves the information about an individual task.
+
+### PATCH
+Updates a given task. This can complete the task, renew it, cancel it, or modify one of its fields. Completing a task may
+trigger payments by sponsors and the user if `donateOnFailure` is false.
+
+Currently, only marking the task as completed is supported. To perform such a request, make a PATCH request with
+the JSON string "mark-as-completed" as the body.
    
 ## /tasks/\<task-id\>/activity
 Retrieves the activity information for a given task (creation, renewals, sponsorships)

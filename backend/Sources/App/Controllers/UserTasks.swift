@@ -8,38 +8,6 @@ let dateFormatter: ISO8601DateFormatter = {
     return formatter
 }()
 
-struct TaskQueryOptions: Content {
-    enum SortBy: String, Codable {
-        /// Tasks will be returned in order from earliest deadline to latest, with the date delimiter determining
-        /// the earliest possible deadline.
-        case earliestDeadline = "earliest-deadline"
-
-        /// Tasks will be returned in order from latest start to earliest (newest to oldest), with the date delimiter
-        /// determining the newest possible task.
-        case latestStart = "latest-start"
-    }
-
-    /// Whether to only return tasks that have not been completed, passed their deadline, or been cancelled.
-    let activeOnly: Bool?
-
-    /// The maximum number of tasks to return.
-    let limit: Int?
-
-    /// Which criteria will be used to determine the order in which records are returned.
-    let sortBy: SortBy
-
-    /// Either the latest possible start date or the earliest possible deadline, depending on sortBy.
-    /// Must be a valid ISO-8601 formatted string.
-    let dateDelimeter: Date?
-
-    enum CodingKeys: String, CodingKey {
-        case activeOnly = "active-only"
-        case limit
-        case sortBy = "sort-by"
-        case dateDelimeter = "date-delimeter"
-    }
-}
-
 /// Controller for /users/<username>/tasks route.
 internal enum UserTasks {
     /// GET handler.

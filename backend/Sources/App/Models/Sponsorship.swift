@@ -22,6 +22,14 @@ struct Sponsorship: Codable {
         self.cancelDate = nil
         self.settled = false
     }
+
+    static func queryFilter(forTask id: BSONObjectID, isActive: Bool) -> BSONDocument {
+        var filter: BSONDocument = ["task": .objectID(id)]
+        if isActive {
+            filter["cancelledDate"] = ["$exists": false]
+        }
+        return filter
+    }
 }
 
 struct SponsorshipContent: Content {

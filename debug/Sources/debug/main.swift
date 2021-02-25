@@ -23,6 +23,7 @@ let charities = db.collection("charity")
 let sponsorships = db.collection("sponsorship")
 
 let userID = BSON.objectID(try BSONObjectID("60355415865cbf06d56935d8"))
+let userID1 = BSON.objectID()
 let charityID = BSON.objectID()
 let taskID = BSON.objectID()
 
@@ -178,6 +179,16 @@ func populate() throws {
         "friends": [],
     ]
 
+    let user1: BSONDocument = [
+        "_id": userID1,
+        "username": "other_user",
+        "displayName": "Jane Doe",
+        "email": "other@test.com",
+        "password": "TBD HASH ALGO",
+        "bio": "Hi, I'm another user",
+        "friends": [],
+    ]
+
     let charity: BSONDocument = [
         "_id": charityID,
         "name": "demo charity",
@@ -217,7 +228,7 @@ func populate() throws {
     let sponsorship: BSONDocument = [
         "_id": .objectID(),
         "task": taskID,
-        "sponsor": userID,
+        "sponsor": userID1,
         "comment": "you can do it!",
         "donationAmount": [
             "amount": 500,
