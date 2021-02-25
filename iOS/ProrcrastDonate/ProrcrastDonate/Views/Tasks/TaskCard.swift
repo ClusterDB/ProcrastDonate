@@ -36,6 +36,7 @@ struct TaskCard: View {
                     VStack(spacing: 0) {
                         Text(task.deadlineDate, style: .relative)
                             .font(.caption)
+                            .padding(.bottom, 4)
                         TagGrid(task.tags)
                     }
                 }

@@ -18,7 +18,6 @@ struct TaskDetailsView: View {
         GridItem(.adaptive(minimum: 80))
     ]
     
-    // TODO: Add a "Done" button that send the updated task to the backend
     var body: some View {
         NavigationView {
             VStack {
@@ -40,12 +39,14 @@ struct TaskDetailsView: View {
                     }
                 }
                 Group {
-                    CaptionLabel("Donation")
-                    Toggle("Make donation when task expires", isOn: $task.donateOnFailure)
-                    if task.donateOnFailure {
-                        NumberInputField(title: "Donation Amount", value: $task.donationAmount)
-                        CharityView(charityID: $task.charity)
+                    CaptionLabel("When to Donate")
+                    Picker(selection: $task.donateOnFailure, label: Text("When should the donation be made?")) {
+                        Text("Completion").tag(false)
+                        Text("Expiration").tag(true)
                     }
+                    .pickerStyle(SegmentedPickerStyle())
+                    NumberInputField(title: "Donation Amount", value: $task.donationAmount)
+                    CharityView(charityID: $task.charity)
                 }
                 Group {
                     CaptionLabel("Tags")
@@ -65,6 +66,7 @@ struct TaskDetailsView: View {
                         InputBox(placeholder: "New tag", newText: $newTag, action: addTag)
                     }
                 }
+                .padding(.top, 8)
                 Spacer()
             }
             .padding()
@@ -86,8 +88,6 @@ struct TaskDetailsView: View {
 
 struct TaskDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-//        NavigationView {
-            TaskDetailsView(task: .sample2)
-//        }
+        TaskDetailsView(task: .sample)
     }
 }

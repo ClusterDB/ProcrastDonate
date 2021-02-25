@@ -53,7 +53,7 @@ extension User: Samplable {
             email: "jane@contoso.com",
             password: "rainbow",
             bio: "The best singer from Rod, Jane and Freddy",
-            friends: [sample._id, sample3._id])
+            friends: [])
     }
     static var sample3: User {
         try! User(
@@ -63,7 +63,7 @@ extension User: Samplable {
             email: "freddy@contoso.com",
             password: "rainbow",
             bio: "The other singer from Rod, Jane and Freddy",
-            friends: [sample._id, sample2._id])
+            friends: [])
     }
 }
 

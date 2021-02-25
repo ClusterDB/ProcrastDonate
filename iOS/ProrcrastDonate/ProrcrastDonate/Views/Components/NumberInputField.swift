@@ -25,7 +25,8 @@ struct NumberInputField: View {
     
     private enum Dimensions {
         static let noSpacing: CGFloat = 0
-        static let bottomPadding: CGFloat = 16
+        static let bottomPadding: CGFloat = 8
+        static let topPadding: CGFloat = 8
     }
 
     var body: some View {
@@ -37,6 +38,7 @@ struct NumberInputField: View {
                 .foregroundColor(.primary)
                 .font(.body)
         }
+        .padding(.top, Dimensions.topPadding)
     }
 }
 

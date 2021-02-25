@@ -13,7 +13,7 @@ class Task: ObservableObject, Identifiable, Codable {
     @Published var title: String
     @Published var user: BSONObjectID
     @Published var descriptionText: String
-    @Published var startDate:Date
+    @Published var startDate: Date
     @Published var completedDate: Date?
     @Published var cancelDate: Date?
     @Published var renewals: [Renewal]
@@ -70,14 +70,14 @@ class Task: ObservableObject, Identifiable, Codable {
     }
     
     enum CodingKeys: CodingKey {
-        case _id
+//        case _id
         case title
         case user
         case descriptionText
         case startDate
         case completedDate
         case cancelDate
-        case renewals
+//        case renewals
         case deadlineDate
         case donateOnFailure
         case donationAmount
@@ -87,35 +87,37 @@ class Task: ObservableObject, Identifiable, Codable {
     
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        _id = try container.decode(BSONObjectID.self, forKey: ._id)
+//        _id = try container.decode(BSONObjectID.self, forKey: ._id)
+        _id = BSONObjectID()
         title = try container.decode(String.self, forKey: .title)
         user = try container.decode(BSONObjectID.self, forKey: .user)
         descriptionText = try container.decode(String.self, forKey: .descriptionText)
         startDate = try container.decode(Date.self, forKey: .startDate)
-        completedDate = try container.decode(Date.self, forKey: .completedDate)
-        cancelDate = try container.decode(Date.self, forKey: .cancelDate)
-        renewals = try container.decode([Renewal].self, forKey: .renewals)
+        completedDate = try container.decodeIfPresent(Date.self, forKey: .completedDate)
+        cancelDate = try container.decodeIfPresent(Date.self, forKey: .cancelDate)
+//        renewals = try container.decodeIfPresent([Renewal].self, forKey: .renewals)
+        renewals = []
         deadlineDate = try container.decode(Date.self, forKey: .deadlineDate)
         donateOnFailure = try container.decode(Bool.self, forKey: .donateOnFailure)
-        donationAmount = try container.decode(Donation.self, forKey: .donationAmount)
-        charity = try container.decode(BSONObjectID.self, forKey: .charity)
+        donationAmount = try container.decodeIfPresent(Donation.self, forKey: .donationAmount)
+        charity = try container.decodeIfPresent(BSONObjectID.self, forKey: .charity)
         tags = try container.decode([String].self, forKey: .tags)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(_id, forKey: ._id)
+//        try container.encode(_id, forKey: ._id)
         try container.encode(title, forKey: .title)
         try container.encode(user, forKey: .user)
         try container.encode(descriptionText, forKey: .descriptionText)
         try container.encode(startDate, forKey: .startDate)
-        try container.encode(completedDate, forKey: .completedDate)
-        try container.encode(cancelDate, forKey: .cancelDate)
-        try container.encode(renewals, forKey: .renewals)
+        try container.encodeIfPresent(completedDate, forKey: .completedDate)
+        try container.encodeIfPresent(cancelDate, forKey: .cancelDate)
+//        try container.encode(renewals, forKey: .renewals)
         try container.encode(deadlineDate, forKey: .deadlineDate)
         try container.encode(donateOnFailure, forKey: .donateOnFailure)
-        try container.encode(donationAmount, forKey: .donationAmount)
-        try container.encode(charity, forKey: .charity)
+        try container.encodeIfPresent(donationAmount, forKey: .donationAmount)
+        try container.encodeIfPresent(charity, forKey: .charity)
         try container.encode(tags, forKey: .tags)
     }
 }

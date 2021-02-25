@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftBSON
 
 struct TaskListView: View {
     @EnvironmentObject var state: AppState
@@ -41,8 +42,25 @@ struct TaskListView: View {
             tasks = Task.samples
             sort()
         } else {
-            // TODO: Fetch from backend
-            tasks = Task.samples
+            let address =
+                "\(state.APIURL)users/\(User.sample._id.description)/tasks?sort-by=earliest-deadline&date-delimiter=3000-10-05T14:48:00.000Z"
+            guard let url = URL(string: address) else {
+                print("Invalid URL")
+                return
+            }
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request) { data, _, error in
+                if let data = data {
+                    if let decodedResponse = try? ExtendedJSONDecoder().decode([Task].self, from: data) {
+                        DispatchQueue.main.async {
+                            self.tasks = decodedResponse
+                            sort()
+                        }
+                        return
+                    }
+                }
+                print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+            }.resume()
         }
     }
     
