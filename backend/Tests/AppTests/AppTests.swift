@@ -5,6 +5,8 @@ import XCTVapor
 
 final class AppTests: XCTestCase {
     static let userID = BSON.objectID(try! BSONObjectID("60355415865cbf06d56935d8"))
+    static let userID1 = BSON.objectID()
+    static let taskID = BSON.objectID()
     static let completedTaskID = BSON.objectID()
     static let charityID = BSON.objectID()
     static let formatter = ISO8601DateFormatter()
@@ -41,6 +43,16 @@ final class AppTests: XCTestCase {
             "friends": [],
         ]
 
+        let user1: BSONDocument = [
+            "_id": userID1,
+            "username": "other_user",
+            "displayName": "Jane Doe",
+            "email": "other@test.com",
+            "password": "TBD HASH ALGO",
+            "bio": "Hi, I'm another user",
+            "friends": [],
+        ]
+
         let charity: BSONDocument = [
             "_id": charityID,
             "name": "demo charity",
@@ -48,7 +60,6 @@ final class AppTests: XCTestCase {
             "website": "www.mongodb.com",
         ]
 
-        let taskID = BSON.objectID()
         let task: BSONDocument = [
             "_id": taskID,
             "title": "generic todo item",
@@ -58,7 +69,7 @@ final class AppTests: XCTestCase {
             "renewals": [],
             "deadlineDate": .datetime(Self.startDate.advanced(by: 10000)),
             "donationAmount": ["amount": 1000, "currency": "USD"],
-            "donateOnFailure": true,
+            "donateOnFailure": false,
             "charity": self.charityID,
             "tags": ["debug", "fun", "difficult"],
         ]
@@ -81,7 +92,7 @@ final class AppTests: XCTestCase {
         let sponsorship: BSONDocument = [
             "_id": .objectID(),
             "task": taskID,
-            "sponsor": userID,
+            "sponsor": userID1,
             "comment": "you can do it!",
             "donationAmount": [
                 "amount": 500,
@@ -94,7 +105,7 @@ final class AppTests: XCTestCase {
         let earlierSponsorship: BSONDocument = [
             "_id": .objectID(),
             "task": completedTaskID,
-            "sponsor": userID,
+            "sponsor": userID1,
             "comment": "you can do it too!",
             "donationAmount": [
                 "amount": 500,
@@ -106,6 +117,7 @@ final class AppTests: XCTestCase {
 
         _ = try charities.insertOne(charity).wait()
         _ = try users.insertOne(user).wait()
+        _ = try users.insertOne(user1).wait()
         _ = try tasks.insertOne(task).wait()
         _ = try tasks.insertOne(completedTask).wait()
         _ = try sponsorships.insertOne(sponsorship).wait()
@@ -258,6 +270,55 @@ final class AppTests: XCTestCase {
             let results = try res.content.decode([SponsorshipContent].self)
             XCTAssertEqual(results.count, 1)
             XCTAssertLessThan(results[0].startDate, mediumPastDate)
+        }
+    }
+
+    func testTaskCompletion() throws {
+        let elg = MultiThreadedEventLoopGroup(numberOfThreads: 4)
+
+        // populate db
+        let client = try AppTests.makeTestClient(using: elg)
+        defer {
+            try? client.syncClose()
+        }
+        try AppTests.populate(using: client)
+
+        let app = Application(.testing, .shared(elg))
+        defer {
+            app.mongoDB.cleanup()
+            app.shutdown()
+        }
+        try configure(app)
+
+        let baseURI = "tasks/\(AppTests.taskID.objectIDValue!.hex)"
+        let baseUserURI = "users/\(AppTests.userID.objectIDValue!.hex)/tasks?"
+        let latestActiveTasks = baseUserURI + "sort-by=latest-start&active-only=true"
+
+        // assert that we have an active task
+        try app.test(.GET, latestActiveTasks) { res in
+            XCTAssertEqual(res.status, .ok)
+            let results = try res.content.decode([Task].self)
+            XCTAssertEqual(results.count, 1)
+
+            let beforeRequest = { (req: inout XCTHTTPRequest) in
+                try req.content.encode(TaskUpdateRequest.markAsCompleted)
+            }
+            // mark the task as done
+            try app.test(.PATCH, baseURI, beforeRequest: beforeRequest) { res in
+                XCTAssertEqual(res.status, .ok)
+
+                // assert that we have no more active tasks
+                try app.test(.GET, latestActiveTasks) { res in
+                    XCTAssertEqual(res.status, .ok)
+                    let results = try res.content.decode([Task].self)
+                    XCTAssertEqual(results.count, 0)
+                }
+
+                // assert that marking the task as done again fails
+                try app.test(.PATCH, baseURI, beforeRequest: beforeRequest) { res in
+                    XCTAssertNotEqual(res.status, .ok)
+                }
+            }
         }
     }
 }

@@ -44,4 +44,37 @@ struct Task: Content {
     var isActive: Bool {
         self.deadlineDate > Date() && self.cancelDate == nil && self.completedDate == nil
     }
+
+    static func queryFilter(forID id: BSONObjectID, isActive: Bool) -> BSONDocument {
+        var filter: BSONDocument = ["_id": .objectID(id)]
+        if isActive {
+            filter["completedDate"] = ["$exists": false]
+            filter["cancelledDate"] = ["$exists": false]
+        }
+        return filter
+    }
+}
+
+enum TaskUpdateRequest: Content {
+    case markAsCompleted
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let string = try? container.decode(String.self) {
+            guard string == "mark-as-completed" else {
+                throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unexpected action string")
+            }
+            self = .markAsCompleted
+            return
+        }
+        throw DecodingError.dataCorruptedError(in: container, debugDescription: "invalid update request")
+    }
+
+    func encode(to encoder: Encoder) throws {
+        switch self {
+        case .markAsCompleted:
+            var container = encoder.singleValueContainer()
+            try container.encode("mark-as-completed")
+        }
+    }
 }
