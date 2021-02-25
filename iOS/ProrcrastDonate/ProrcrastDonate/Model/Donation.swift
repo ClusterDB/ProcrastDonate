@@ -7,16 +7,35 @@
 
 import Foundation
 
-class Donation: ObservableObject {
-    @Published var amount = 0
-    @Published var currency = "USD"
+class Donation: ObservableObject, Codable {
+    @Published var amount: Int
+    @Published var currency: String
+    
+    init() {
+        amount = 0
+        currency = "USD"
+    }
 
-    convenience init(
-        amount: Int,
-        currency: String = "USD"
-    ) {
+    convenience init(amount: Int, currency: String = "USD") {
         self.init()
         self.amount = amount
         self.currency = currency
+    }
+    
+    enum CodingKeys: CodingKey {
+        case amount
+        case currency
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        amount = try container.decode(Int.self, forKey: .amount)
+        currency = try container.decode(String.self, forKey: .currency)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(amount, forKey: .amount)
+        try container.encode(currency, forKey: .currency)
     }
 }

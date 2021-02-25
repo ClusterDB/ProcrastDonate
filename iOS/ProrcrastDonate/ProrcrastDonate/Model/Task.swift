@@ -8,24 +8,36 @@
 import SwiftUI
 import SwiftBSON
 
-class Task: ObservableObject, Identifiable {
-    @Published var _id = BSONObjectID()
-    @Published var title = ""
-    @Published var user  = BSONObjectID()
-    @Published var descriptionText = ""
-    @Published var startDate = Date()
+class Task: ObservableObject, Identifiable, Codable {
+    @Published var _id: BSONObjectID
+    @Published var title: String
+    @Published var user: BSONObjectID
+    @Published var descriptionText: String
+    @Published var startDate:Date
     @Published var completedDate: Date?
     @Published var cancelDate: Date?
-    @Published var renewals = [Renewal]()
-    @Published var deadlineDate = Date().addingTimeInterval(86400)
-    @Published var donateOnFailure = false
+    @Published var renewals: [Renewal]
+    @Published var deadlineDate: Date
+    @Published var donateOnFailure: Bool
     @Published var donationAmount: Donation?
     @Published var charity: BSONObjectID?
-    @Published var tags = [String]()
+    @Published var tags: [String]
     
     var id: String { _id.description }
     var completed: Bool { completedDate != nil }
 
+    init() {
+        _id = BSONObjectID()
+        title = ""
+        user  = BSONObjectID()
+        descriptionText = ""
+        startDate = Date()
+        renewals = [Renewal]()
+        deadlineDate = Date().addingTimeInterval(86400)
+        donateOnFailure = false
+        tags = [String]()
+    }
+    
     convenience init(
         _id: BSONObjectID = BSONObjectID(),
         title: String,
@@ -55,5 +67,55 @@ class Task: ObservableObject, Identifiable {
         self.donationAmount = donationAmount
         self.charity = charity
         self.tags.append(contentsOf: tags)
+    }
+    
+    enum CodingKeys: CodingKey {
+        case _id
+        case title
+        case user
+        case descriptionText
+        case startDate
+        case completedDate
+        case cancelDate
+        case renewals
+        case deadlineDate
+        case donateOnFailure
+        case donationAmount
+        case charity
+        case tags
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        _id = try container.decode(BSONObjectID.self, forKey: ._id)
+        title = try container.decode(String.self, forKey: .title)
+        user = try container.decode(BSONObjectID.self, forKey: .user)
+        descriptionText = try container.decode(String.self, forKey: .descriptionText)
+        startDate = try container.decode(Date.self, forKey: .startDate)
+        completedDate = try container.decode(Date.self, forKey: .completedDate)
+        cancelDate = try container.decode(Date.self, forKey: .cancelDate)
+        renewals = try container.decode([Renewal].self, forKey: .renewals)
+        deadlineDate = try container.decode(Date.self, forKey: .deadlineDate)
+        donateOnFailure = try container.decode(Bool.self, forKey: .donateOnFailure)
+        donationAmount = try container.decode(Donation.self, forKey: .donationAmount)
+        charity = try container.decode(BSONObjectID.self, forKey: .charity)
+        tags = try container.decode([String].self, forKey: .tags)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(_id, forKey: ._id)
+        try container.encode(title, forKey: .title)
+        try container.encode(user, forKey: .user)
+        try container.encode(descriptionText, forKey: .descriptionText)
+        try container.encode(startDate, forKey: .startDate)
+        try container.encode(completedDate, forKey: .completedDate)
+        try container.encode(cancelDate, forKey: .cancelDate)
+        try container.encode(renewals, forKey: .renewals)
+        try container.encode(deadlineDate, forKey: .deadlineDate)
+        try container.encode(donateOnFailure, forKey: .donateOnFailure)
+        try container.encode(donationAmount, forKey: .donationAmount)
+        try container.encode(charity, forKey: .charity)
+        try container.encode(tags, forKey: .tags)
     }
 }
