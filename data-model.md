@@ -342,11 +342,51 @@ Parameters:
 Retrieves the information about an individual task.
 
 ### PATCH
-Updates a given task. This can complete the task, renew it, cancel it, or modify one of its fields. Completing a task may
-trigger payments by sponsors and the user if `donateOnFailure` is false.
+Updates a given task. This can complete the task, renew it, cancel it, or modify one of its fields. Completing a task
+may trigger payments by sponsors and the user if `donateOnFailure` is false.
 
 Currently, only marking the task as completed is supported. To perform such a request, make a PATCH request with
 the JSON string "mark-as-completed" as the body.
-   
+
+If `donateOnFailure=false`, an extended JSON response of the following form will be returned summarizing the payments
+made:
+
+
+```
+{
+    "charity": {
+        "_id": <ObjectID>,
+        "name": <string>,
+        "descriptionText": <string>,
+        "website": <string>,
+    },
+    "donationAmount": {
+        "amount": <positive integer>,
+        "currency": <string>
+    },
+    "sponsorships": [
+        {
+            "sponsor": {
+                "_id": <ObjectID>,
+                "username:" <string>,
+                "displayName": <string>,
+                "email": <string>,
+                "bio": <string>,
+                "friends": [ <ObjectID> ]
+            },
+            "donationAmount": {
+                "amount": <positive integer>,
+                "currency": <string>
+            }
+        }
+    ]
+}
+```
+
+Most of the sponsor field are extraneous, but it was easier to include them then scrub them out. In the future those can
+be reduced to just the necessary ones.
+
+If `donateOnFailure=true`, the JSON string "ok" will be returned instead.
+
 ## /tasks/\<task-id\>/activity
 Retrieves the activity information for a given task (creation, renewals, sponsorships)

@@ -2,8 +2,8 @@ import Foundation
 import MongoDBVapor
 import Vapor
 
-struct MonetaryValue: Codable {
-    enum Currency: String, Codable {
+struct MonetaryValue: Codable, Equatable {
+    enum Currency: String, Codable, Equatable {
         case USD
     }
 
@@ -12,6 +12,11 @@ struct MonetaryValue: Codable {
 
     /// The type of currency
     let currency: Currency
+
+    init(dollars: UInt, cents: UInt) {
+        self.amount = dollars * 100 + cents
+        self.currency = .USD
+    }
 }
 
 /// Options determining the sort / limit / delimeters of a task or sponsorship based query.

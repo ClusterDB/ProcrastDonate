@@ -18,9 +18,57 @@ internal enum Tasks {
         let donationAmount: MonetaryValue
     }
 
+    enum TaskCompletionResult: Content {
+        /// donateOnFailure=true, so no payment
+        case ok
+
+        /// donateOnFailure=false, so a donation is made
+        case paymentCompleted(TaskCompletionPaymentRecord)
+
+        func encode(to encoder: Encoder) throws {
+            var container = encoder.singleValueContainer()
+            switch self {
+            case .ok:
+                try container.encode("ok")
+            case let .paymentCompleted(record):
+                try container.encode(record)
+            }
+        }
+
+        init(from decoder: Decoder) throws {
+            let container = try decoder.singleValueContainer()
+            if let string = try? container.decode(String.self) {
+                guard string == "ok" else {
+                    throw DecodingError.dataCorruptedError(in: container, debugDescription: "unexpected string value")
+                }
+                self = .ok
+                return
+            }
+
+            let record = try container.decode(TaskCompletionPaymentRecord.self)
+            self = .paymentCompleted(record)
+        }
+    }
+
+    struct TaskCompletionPaymentRecord: Content {
+        let charity: Charity
+        let donationAmount: MonetaryValue
+        let sponsorships: [SponsorshipPaymentRecord]
+    }
+
+    struct SponsorshipPaymentRecord: Content {
+        let sponsor: UserContent
+        let donationAmount: MonetaryValue
+
+        init(from paymentDetails: SponsorshipPaymentDetails) {
+            self.sponsor = paymentDetails.sponsor.toContent()
+            self.donationAmount = paymentDetails.donationAmount
+        }
+    }
+
     /// PATCH handler.
     /// Used to update the status of a task.
-    static func patch(taskID: BSONObjectID, req: Request) throws -> EventLoopFuture<HTTPStatus> {
+    static func patch(taskID: BSONObjectID, req: Request) throws -> EventLoopFuture<TaskCompletionResult> {
         let update = try req.content.decode(TaskUpdateRequest.self)
 
         switch update {
@@ -101,7 +149,7 @@ internal enum Tasks {
                 // because the task succeeeded
                 guard !paymentInfo.donateOnFailure else {
                     req.logger.info("\"\(paymentInfo.title)\" completed. donateOnFailure=true so no payments necessary")
-                    return req.eventLoop.makeSucceededVoidFuture()
+                    return req.eventLoop.makeSucceededFuture(.ok)
                 }
 
                 req.logger.info("Processing payments for \"\(paymentInfo.title)\"")
@@ -126,9 +174,13 @@ internal enum Tasks {
 
                 return EventLoopFuture.andAllSucceed(futures, on: req.eventLoop).map {
                     req.logger.info("payments processed successfully")
+                    let record = TaskCompletionPaymentRecord(
+                        charity: paymentInfo.charity,
+                        donationAmount: paymentInfo.donationAmount,
+                        sponsorships: paymentInfo.sponsorships.map { SponsorshipPaymentRecord(from: $0) }
+                    )
+                    return TaskCompletionResult.paymentCompleted(record)
                 }
-            }.map { (_: Void) in
-                HTTPStatus.ok
             }
         }
     }

@@ -307,6 +307,15 @@ final class AppTests: XCTestCase {
             try app.test(.PATCH, baseURI, beforeRequest: beforeRequest) { res in
                 XCTAssertEqual(res.status, .ok)
 
+                let result = try res.content.decode(Tasks.TaskCompletionResult.self)
+                guard case let .paymentCompleted(record) = result else {
+                    XCTFail("expected payment record, got \(result)")
+                    return
+                }
+                XCTAssertEqual(record.donationAmount, MonetaryValue(dollars: 10, cents: 0))
+                XCTAssertEqual(record.sponsorships.count, 1)
+                XCTAssertEqual(record.sponsorships[0].sponsor._id, Self.userID1.objectIDValue)
+
                 // assert that we have no more active tasks
                 try app.test(.GET, latestActiveTasks) { res in
                     XCTAssertEqual(res.status, .ok)
