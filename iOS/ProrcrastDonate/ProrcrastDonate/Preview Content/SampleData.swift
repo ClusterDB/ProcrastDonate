@@ -37,7 +37,7 @@ extension User: Samplable {
     static var samples: [User] { [sample, sample2, sample3] }
     static var sample: User {
         try! User(
-            _id: BSONObjectID("f0d456789012345678901234"),
+            _id: BSONObjectID("60355415865cbf06d56935d8"),
             userName: "rod",
             displayName: "Rod",
             email: "rod@contoso.com",
