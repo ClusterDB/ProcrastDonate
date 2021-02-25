@@ -149,11 +149,48 @@ extension Charity: Samplable {
     }
 }
 
+extension Donation {
+    convenience init (donation: Donation) {
+        self.init()
+        self.amount = donation.amount
+        self.currency = donation.currency
+    }
+}
+
+extension Donation: Samplable {
+    static var samples: [Donation] { [sample, sample2, sample3, sample4] }
+    static var sample: Donation {
+        Donation(
+            amount: 10,
+            currency: "USD"
+        )
+    }
+    static var sample2: Donation {
+        Donation(
+            amount: 5,
+            currency: "USD"
+        )
+    }
+    static var sample3: Donation {
+        Donation(
+            amount: 0,
+            currency: "USD"
+        )
+    }
+    static var sample4: Donation {
+        Donation(
+            amount: 15,
+            currency: "GBP"
+        )
+    }
+}
+
 extension Task {
     convenience init(_ task: Task) {
         self.init()
         // Don't copy _id
         title = task.title
+        user = task.user
         descriptionText = task.descriptionText
         startDate = task.startDate
         completedDate = task.completedDate
@@ -175,6 +212,7 @@ extension Task: Samplable {
         try! Task(
             _id: BSONObjectID("111456789012345678901234"),
             title: "Task 1",
+            user: BSONObjectID("60355415865cbf06d56935d8"),
             descriptionText: """
             This is the first task's description.
             It can scan many lines.
@@ -187,7 +225,7 @@ extension Task: Samplable {
             renewals: Renewal.samples,
             deadlineDate: Date().addingTimeInterval(86400),
             donateOnFailure: true,
-            donationAmount: 25,
+            donationAmount: .sample,
             charity: Charity.sample._id,
             tags: ["animals"])
     }
@@ -195,19 +233,21 @@ extension Task: Samplable {
         try! Task(
             _id: BSONObjectID("222456789012345678901234"),
             title: "Task 2",
+            user: BSONObjectID("60355415865cbf06d56935d8"),
             descriptionText: "Second task",
             startDate: Date(),
             cancelDate: nil,
             renewals: Renewal.samples,
             deadlineDate: Date().addingTimeInterval(226400),
             donateOnFailure: false,
-            donationAmount: 0,
+            donationAmount: .sample2,
             tags: ["animals", "creepy", "dark", "spooky", "sound", "flying", "animal", "rodent"])
     }
     static var sample3: Task {
         try! Task(
             _id: BSONObjectID("333456789012345678901234"),
             title: "Task 3 - with a longer task name than some others",
+            user: BSONObjectID("60355415865cbf06d56935d8"),
             descriptionText: "Third task - which has a longer description than some others. Filler text here. Filler text here. ",
             startDate: Date().addingTimeInterval(-86400),
             completedDate: Date().addingTimeInterval(-16400),
@@ -215,7 +255,7 @@ extension Task: Samplable {
             renewals: [],
             deadlineDate: Date().addingTimeInterval(126400),
             donateOnFailure: true,
-            donationAmount: 10,
+            donationAmount: .sample3,
             charity: Charity.sample3._id,
             tags: ["developers"])
     }
@@ -223,13 +263,14 @@ extension Task: Samplable {
         try! Task(
             _id: BSONObjectID("444456789012345678901234"),
             title: "Task 4 - probably overdue",
+            user: BSONObjectID("60355415865cbf06d56935d8"),
             descriptionText: "Fourth task - This is an overdue task.",
             startDate: Date().addingTimeInterval(-86400),
             cancelDate: Date(),
             renewals: [],
             deadlineDate: Date().addingTimeInterval(-6400),
             donateOnFailure: true,
-            donationAmount: 10,
+            donationAmount: .sample4,
             charity: Charity.sample3._id,
             tags: ["developers"])
     }

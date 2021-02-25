@@ -40,6 +40,7 @@
 		0A0556B125E698AA00E6F88B /* TaskCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556B025E698AA00E6F88B /* TaskCard.swift */; };
 		0A0556B325E6B33C00E6F88B /* TagGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556B225E6B33C00E6F88B /* TagGrid.swift */; };
 		0A0556B525E6E4EB00E6F88B /* TaskListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A0556B425E6E4EB00E6F88B /* TaskListView.swift */; };
+		0A36A71D25E7B4C100101A73 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A36A71C25E7B4C100101A73 /* Donation.swift */; };
 		63562AAB498E046F83409DAB /* Pods_ProrcrastDonate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */; };
 		C2658E83FCE57608481A1FAC /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA3FA344DEDD2AC6A6341451 /* Pods_ProrcrastDonate_ProrcrastDonateUITests.framework */; };
 		DE0E113D1801F5FA20A196EC /* Pods_ProrcrastDonateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */; };
@@ -101,6 +102,7 @@
 		0A0556B025E698AA00E6F88B /* TaskCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCard.swift; sourceTree = "<group>"; };
 		0A0556B225E6B33C00E6F88B /* TagGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagGrid.swift; sourceTree = "<group>"; };
 		0A0556B425E6E4EB00E6F88B /* TaskListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListView.swift; sourceTree = "<group>"; };
+		0A36A71C25E7B4C100101A73 /* Donation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		406C6DB80DB14BB23ED08A60 /* Pods_ProrcrastDonateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D9F4FEDE463F04922F7C219 /* Pods_ProrcrastDonate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProrcrastDonate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		82453613B073FA14EE1F3DEB /* Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; path = "Target Support Files/Pods-ProrcrastDonate-ProrcrastDonateUITests/Pods-ProrcrastDonate-ProrcrastDonateUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				0A05567025E50D4700E6F88B /* Task.swift */,
 				0A05567225E5141200E6F88B /* Renewal.swift */,
 				0A05567425E520B700E6F88B /* Charity.swift */,
+				0A36A71C25E7B4C100101A73 /* Donation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				0A0556B325E6B33C00E6F88B /* TagGrid.swift in Sources */,
 				0A0556A325E66A1600E6F88B /* LabeledText.swift in Sources */,
 				0A0556B525E6E4EB00E6F88B /* TaskListView.swift in Sources */,
+				0A36A71D25E7B4C100101A73 /* Donation.swift in Sources */,
 				0A0556A925E680B300E6F88B /* AddTag.swift in Sources */,
 				0A0556A125E664F000E6F88B /* CharityView.swift in Sources */,
 				0A05568325E558BC00E6F88B /* TextEditorField.swift in Sources */,

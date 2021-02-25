@@ -11,6 +11,7 @@ import SwiftBSON
 class Task: ObservableObject, Identifiable {
     @Published var _id = BSONObjectID()
     @Published var title = ""
+    @Published var user  = BSONObjectID()
     @Published var descriptionText = ""
     @Published var startDate = Date()
     @Published var completedDate: Date?
@@ -18,7 +19,7 @@ class Task: ObservableObject, Identifiable {
     @Published var renewals = [Renewal]()
     @Published var deadlineDate = Date().addingTimeInterval(86400)
     @Published var donateOnFailure = false
-    @Published var donationAmount: Int = 0
+    @Published var donationAmount: Donation?
     @Published var charity: BSONObjectID?
     @Published var tags = [String]()
     
@@ -28,6 +29,7 @@ class Task: ObservableObject, Identifiable {
     convenience init(
         _id: BSONObjectID = BSONObjectID(),
         title: String,
+        user: BSONObjectID,
         descriptionText: String,
         startDate: Date = Date(),
         completedDate: Date? = nil,
@@ -35,13 +37,14 @@ class Task: ObservableObject, Identifiable {
         renewals: [Renewal] = [],
         deadlineDate: Date,
         donateOnFailure: Bool,
-        donationAmount: Int,
+        donationAmount: Donation? = nil,
         charity: BSONObjectID? = nil,
         tags: [String]
     ) {
         self.init()
         self._id = _id
         self.title = title
+        self.user = user
         self.descriptionText = descriptionText
         self.startDate = startDate
         self.completedDate = completedDate

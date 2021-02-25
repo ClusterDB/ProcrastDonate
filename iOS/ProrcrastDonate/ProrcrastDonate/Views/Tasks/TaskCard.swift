@@ -31,7 +31,7 @@ struct TaskCard: View {
                     Text("\(task.title)")
                     Spacer()
                     if let amount = task.donationAmount {
-                        Text("$\(amount)")
+                        Text("$\(amount.amount)")
                     }
                     VStack(spacing: 0) {
                         Text(task.deadlineDate, style: .relative)

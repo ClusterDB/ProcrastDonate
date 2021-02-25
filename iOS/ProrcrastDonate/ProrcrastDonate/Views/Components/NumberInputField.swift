@@ -10,14 +10,16 @@ import SwiftUI
 struct NumberInputField: View {
 
     let title: String
-    @Binding var value: Int
+    @Binding var value: Donation?
     
     private var valueBinding: Binding<String> {
         Binding<String>(
-            get: { "\(value)" },
+            get: { "\(value?.amount ?? 0)" },
             set: {
                 let numberFormatter = NumberFormatter()
-                value = numberFormatter.number(from: $0)?.intValue ?? 0
+                if let value = value {
+                    value.amount = numberFormatter.number(from: $0)?.intValue ?? 0
+                }
             })
     }
     
@@ -41,7 +43,7 @@ struct NumberInputField: View {
 struct NumberInputField_Previews: PreviewProvider {
     static var previews: some View {
         AppearancePreviews(
-            NumberInputField(title: "Input", value: .constant(42))
+            NumberInputField(title: "Input", value: .constant(.sample))
             .previewLayout(.sizeThatFits)
             .padding()
         )

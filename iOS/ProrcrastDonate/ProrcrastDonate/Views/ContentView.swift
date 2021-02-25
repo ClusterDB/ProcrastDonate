@@ -8,12 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var task: Task
-    
-    init() {
-        task = Task.sample2
-    }
-    
     var body: some View {
         NavigationView {
             TaskListView()
