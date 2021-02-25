@@ -293,7 +293,7 @@ Creates a new task for the user. Body must contain an extended JSON object with 
         "amount": <positive integer>,
         "currency": "USD", // TODO: support more currencies
     },
-    donationOnFailure: <boolean>,
+    donateOnFailure: <boolean>,
     charity: <ObjectID>,
     tags: [ <string> ],
 }

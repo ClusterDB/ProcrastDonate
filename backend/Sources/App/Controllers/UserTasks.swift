@@ -41,7 +41,7 @@ internal enum UserTasks {
         let descriptionText: String
         let deadlineDate: Date
         let donationAmount: MonetaryValue
-        let donationOnFailure: Bool
+        let donateOnFailure: Bool
         let charity: BSONObjectID
         let tags: [String]
     }
@@ -66,7 +66,7 @@ internal enum UserTasks {
                 descriptionText: newTask.descriptionText,
                 deadlineDate: newTask.deadlineDate,
                 donationAmount: newTask.donationAmount,
-                donateOnFailure: newTask.donationOnFailure,
+                donateOnFailure: newTask.donateOnFailure,
                 charity: newTask.charity,
                 tags: newTask.tags
             )
