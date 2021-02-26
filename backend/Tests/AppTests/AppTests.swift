@@ -124,6 +124,58 @@ final class AppTests: XCTestCase {
         _ = try sponsorships.insertOne(earlierSponsorship).wait()
     }
 
+    func testUserTaskPost() throws {
+        let elg = MultiThreadedEventLoopGroup(numberOfThreads: 4)
+
+        // populate db
+        let client = try AppTests.makeTestClient(using: elg)
+        defer {
+            try? client.syncClose()
+        }
+        try AppTests.populate(using: client)
+
+        let app = Application(.testing, .shared(elg))
+        defer {
+            app.mongoDB.cleanup()
+            app.shutdown()
+        }
+        try configure(app)
+
+        let baseURI = "users/\(AppTests.userID.objectIDValue!.hex)/tasks?"
+
+        try app.test(.GET, baseURI + "sort-by=earliest-deadline") { res in
+            XCTAssertEqual(res.status, .ok)
+            let results = try res.content.decode([Task].self)
+            XCTAssertEqual(results.count, 2)
+
+            let newTask = UserTasks.NewTask(
+                _id: BSONObjectID(),
+                title: "Some new Task",
+                descriptionText: "lorem ipsum",
+                deadlineDate: Date().advanced(by: 500),
+                donationAmount: MonetaryValue(dollars: 2, cents: 50),
+                donateOnFailure: false,
+                charity: AppTests.charityID.objectIDValue!,
+                tags: ["from", "post"]
+            )
+            let beforeRequest = { (req: inout XCTHTTPRequest) in
+                try req.content.encode(newTask)
+            }
+
+            try app.test(.POST, baseURI, beforeRequest: beforeRequest) { res in
+                XCTAssertEqual(res.status, .ok)
+                try app.test(.GET, baseURI + "sort-by=earliest-deadline") { res in
+                    XCTAssertEqual(res.status, .ok)
+                    let results = try res.content.decode([Task].self)
+                    XCTAssertEqual(results.count, 3)
+                    XCTAssertEqual(results[0]._id, newTask._id)
+                    XCTAssertEqual(results[0].title, newTask.title)
+                    XCTAssertEqual(results[0].donationAmount, newTask.donationAmount)
+                }
+            }
+        }
+    }
+
     func testUserTasksGet() throws {
         let elg = MultiThreadedEventLoopGroup(numberOfThreads: 4)
 

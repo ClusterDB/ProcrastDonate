@@ -18,6 +18,7 @@ struct Task: Content {
     let tags: [String]
 
     init(
+        _id: BSONObjectID,
         title: String,
         user: BSONObjectID,
         descriptionText: String,
@@ -27,7 +28,7 @@ struct Task: Content {
         charity: BSONObjectID,
         tags: [String]
     ) {
-        self._id = BSONObjectID()
+        self._id = _id
         self.title = title
         self.user = user
         self.descriptionText = descriptionText

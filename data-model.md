@@ -286,6 +286,7 @@ Creates a new task for the user. Body must contain an extended JSON object with 
 
 ```
 {
+    "_id": <ObjectID>,
     "title": <string>,
     "descriptionText": <string>,
     "deadlineDate": <datetime>,

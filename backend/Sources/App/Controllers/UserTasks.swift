@@ -36,7 +36,8 @@ internal enum UserTasks {
     }
 
     /// The data required to create a new task.
-    struct NewTask: Content {
+    struct NewTask: Content, Equatable {
+        let _id: BSONObjectID
         let title: String
         let descriptionText: String
         let deadlineDate: Date
@@ -61,6 +62,7 @@ internal enum UserTasks {
 
         return verifyUser.and(verifyCharity).flatMap { _ in
             let fullTask = Task(
+                _id: newTask._id,
                 title: newTask.title,
                 user: userID,
                 descriptionText: newTask.descriptionText,
