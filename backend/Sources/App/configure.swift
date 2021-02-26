@@ -1,6 +1,10 @@
 import Foundation
 import MongoDBVapor
+import NIO
 import Vapor
+
+let dbName = "dev"
+let tasksName = "task"
 
 // configures your application
 public func configure(_ app: Application) throws {
@@ -20,4 +24,36 @@ public func configure(_ app: Application) throws {
 
     // register routes
     try routes(app)
+
+    processExpirations(
+        previousStartTime: Date().advanced(by: -60),
+        eventLoop: app.eventLoopGroup.next(),
+        dbClient: app.mongoDB.client
+    )
+}
+
+func processExpirations(previousStartTime: Date, eventLoop: EventLoop, dbClient: MongoClient) {
+    print("processing expirations...")
+    let db = dbClient.db(App.dbName)
+    let tasks = db.collection(App.tasksName, withType: Task.self)
+
+    let start = Date()
+    let filter: BSONDocument = [
+        "deadlineDate": [
+            "$lt": .datetime(start),
+            "$gt": .datetime(previousStartTime)
+        ]
+    ]
+    tasks.find(filter).flatMap { cursor in
+        cursor.toArray()
+    }.whenComplete { tasks in
+        if case let .success(tasksArr) = tasks {
+            for task in tasksArr {
+                print("task expired: \(task.title)")
+            }
+        }
+        eventLoop.scheduleTask(in: .seconds(5)) {
+            processExpirations(previousStartTime: start, eventLoop: eventLoop, dbClient: dbClient)
+        }
+    }
 }

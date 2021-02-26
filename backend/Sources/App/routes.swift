@@ -12,11 +12,11 @@ private typealias TaskRequestHandler<T> = (BSONObjectID, Request) throws -> Even
 extension Request {
     var db: MongoDatabase {
         let options = MongoDatabaseOptions(writeConcern: .majority)
-        return mongoDB.client.db("dev", options: options)
+        return mongoDB.client.db(App.dbName, options: options)
     }
 
     var tasks: MongoCollection<Task> {
-        self.db.collection("task", withType: Task.self)
+        self.db.collection(App.tasksName, withType: Task.self)
     }
 
     var users: MongoCollection<User> {

@@ -53,6 +53,11 @@ struct Task: Content {
         }
         return filter
     }
+
+    static let activeFilter: BSONDocument = [
+        "completedDate": [ "$exists": false ],
+        "cancelledDate": [ "$exists": false ],
+    ]
 }
 
 enum TaskUpdateRequest: Content {
