@@ -45,7 +45,7 @@ struct TaskDetailsView: View {
                         Text("Expiration").tag(true)
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    NumberInputField(title: "Donation Amount", value: $task.donationAmount)
+                    NumberInputField(title: "Donation Amount", value: $task.donationAmount.amount)
                     CharityView(charityID: $task.charity)
                 }
                 Group {

@@ -9,25 +9,17 @@ import SwiftUI
 import SwiftBSON
 
 class User: ObservableObject, Identifiable {
-    @Published var _id: BSONObjectID
-    @Published var userName: String
-    @Published var displayName: String
-    @Published var email: String
-    @Published var password: String // Should be hashed
-    @Published var bio: String
-    @Published var friends: [BSONObjectID]
+    @Published var _id = BSONObjectID()
+    @Published var userName = ""
+    @Published var displayName = ""
+    @Published var email = ""
+    @Published var password = "" // Should be hashed
+    @Published var bio = ""
+    @Published var friends = [BSONObjectID]()
     
     var id: String { _id.description }
     
-    init() {
-        _id = BSONObjectID()
-        userName = ""
-        displayName = ""
-        email = ""
-        password = "" // Should be hashed
-        bio = ""
-        friends = [BSONObjectID]()
-    }
+    init() {}
     
     convenience init(
         _id: BSONObjectID = BSONObjectID(),

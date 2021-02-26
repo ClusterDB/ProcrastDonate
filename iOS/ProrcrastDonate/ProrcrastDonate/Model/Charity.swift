@@ -9,17 +9,12 @@ import SwiftUI
 import SwiftBSON
 
 class Charity: ObservableObject, Identifiable, Codable {
-    @Published var _id: BSONObjectID
-    @Published var name: String
-    @Published var descriptionText: String
-    @Published var website: String
+    @Published var _id = BSONObjectID()
+    @Published var name = ""
+    @Published var descriptionText = ""
+    @Published var website = ""
     
-    init() {
-        _id = BSONObjectID()
-        name = ""
-        descriptionText = ""
-        website = ""
-    }
+    init() {}
     
     convenience init(
             _id: BSONObjectID = BSONObjectID(),

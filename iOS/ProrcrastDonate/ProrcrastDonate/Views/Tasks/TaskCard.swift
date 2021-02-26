@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TaskCard: View {
+    @EnvironmentObject var state: AppState
+    
     @ObservedObject var task: Task
     var action: () -> Void = {}
     
@@ -20,7 +22,7 @@ struct TaskCard: View {
             get: { return task.completedDate != nil },
             set: {
                 task.completedDate = $0 ? Date() : nil
-                updateBackend()
+                if $0 { sendCompletion() }
             }
         )
         
@@ -56,6 +58,29 @@ struct TaskCard: View {
         })
     }
     
+    func sendCompletion() {
+        action()
+        guard let encoded = try? JSONEncoder().encode("mark-as-completed") else {
+            print("Failed to encode completion request")
+            return
+        }
+        guard let url = URL(string: "\(state.APIURL)tasks/\(task._id.description)") else {
+            print("Failed to encode URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PATCH"
+        request.httpBody = encoded
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if data == nil {
+                print("No data in response: \(error?.localizedDescription ?? "Unknown error").")
+            } else {
+                print("Completion sent")
+            }
+        }.resume()
+    }
+    
     func updateBackend() {
         action()
         // TODO: Send update to API
@@ -72,6 +97,7 @@ struct TaskCard_Previews: PreviewProvider {
                     TaskCard(task: task)
                 }
             }
+            .environmentObject(AppState())
             .previewLayout(.sizeThatFits)
         }
     }

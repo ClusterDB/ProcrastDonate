@@ -8,25 +8,16 @@
 import SwiftUI
 
 class Renewal: ObservableObject, Identifiable, Codable {
-    let id: String
-    @Published var date: Date
-    @Published var oldDeadline: Date
-    @Published var newDeadline: Date
-    @Published var oldAmount: Int
-    @Published var newAmount: Int
-    @Published var renewReason: String
-    @Published var paidOldAmount: Bool
+    @Published var id = UUID().uuidString
+    @Published var date = Date()
+    @Published var oldDeadline = Date()
+    @Published var newDeadline = Date().addingTimeInterval(86400)
+    @Published var oldAmount = 0
+    @Published var newAmount = 0
+    @Published var renewReason = ""
+    @Published var paidOldAmount = false
     
-    init() {
-        id  = UUID().uuidString
-        date = Date()
-        oldDeadline = Date()
-        newDeadline = Date().addingTimeInterval(86400)
-        oldAmount = 0
-        newAmount = 0
-        renewReason = ""
-        paidOldAmount = false
-    }
+    init() {}
     
     convenience init(
         date: Date,

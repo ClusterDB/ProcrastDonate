@@ -8,13 +8,10 @@
 import Foundation
 
 class Donation: ObservableObject, Codable {
-    @Published var amount: Int
-    @Published var currency: String
+    @Published var amount = 0
+    @Published var currency = "USD"
     
-    init() {
-        amount = 0
-        currency = "USD"
-    }
+    init() {}
 
     convenience init(amount: Int, currency: String = "USD") {
         self.init()

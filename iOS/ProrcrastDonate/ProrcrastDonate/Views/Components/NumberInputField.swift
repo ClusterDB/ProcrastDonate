@@ -10,23 +10,20 @@ import SwiftUI
 struct NumberInputField: View {
 
     let title: String
-    @Binding var value: Donation?
+    @Binding var value: Int
     
     private var valueBinding: Binding<String> {
         Binding<String>(
-            get: { "\(value?.amount ?? 0)" },
+            get: { "\(value)" },
             set: {
                 let numberFormatter = NumberFormatter()
-                if let value = value {
-                    value.amount = numberFormatter.number(from: $0)?.intValue ?? 0
-                }
+                value = numberFormatter.number(from: $0)?.intValue ?? 0
             })
     }
     
     private enum Dimensions {
         static let noSpacing: CGFloat = 0
-        static let bottomPadding: CGFloat = 8
-        static let topPadding: CGFloat = 8
+        static let bottomPadding: CGFloat = 16
     }
 
     var body: some View {
@@ -38,14 +35,13 @@ struct NumberInputField: View {
                 .foregroundColor(.primary)
                 .font(.body)
         }
-        .padding(.top, Dimensions.topPadding)
     }
 }
 
 struct NumberInputField_Previews: PreviewProvider {
     static var previews: some View {
         AppearancePreviews(
-            NumberInputField(title: "Input", value: .constant(.sample))
+            NumberInputField(title: "Input", value: .constant(42))
             .previewLayout(.sizeThatFits)
             .padding()
         )

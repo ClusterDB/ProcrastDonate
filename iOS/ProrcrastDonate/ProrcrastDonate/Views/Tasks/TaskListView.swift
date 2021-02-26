@@ -13,7 +13,7 @@ struct TaskListView: View {
     
     @State private var tasks = [Task]()
     @State private var showingNewTaskSheet = false
-    @StateObject var newTask = Task()
+    @State var newTask = Task()
     
     var body: some View {
         List {
@@ -77,12 +77,34 @@ struct TaskListView: View {
     }
     
     func saveTask() {
+        // TODO: Remove once we have user management
+        newTask.user = User.sample._id
         if state.localMode {
-            tasks.insert(newTask, at: 0)
-        } else {
-            // TODO: Write to backend
             tasks.append(newTask)
+        } else {
+            tasks.append(newTask)
+            
+            guard let encoded = try? ExtendedJSONEncoder().encode(newTask) else {
+                print("Failed to encode new task")
+                return
+            }
+            guard let url = URL(string: "\(state.APIURL)users/\(newTask.user.description)/tasks") else {
+                print("Failed to encode URL")
+                return
+            }
+            var request = URLRequest(url: url)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpMethod = "POST"
+            request.httpBody = encoded
+            URLSession.shared.dataTask(with: request) { data, _, error in
+                if data == nil {
+                    print("No data in response: \(error?.localizedDescription ?? "Unknown error").")
+                } else {
+                    print("New task sent")
+                }
+            }.resume()
         }
+        newTask = Task()
         sort()
     }
 }
