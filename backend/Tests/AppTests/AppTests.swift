@@ -229,7 +229,7 @@ final class AppTests: XCTestCase {
         }
 
         let farAwayDate = Self.formatter.string(from: Date.distantFuture)
-        try app.test(.GET, baseURI + "sort-by=earliest-deadline&date-delimeter=\(farAwayDate)") { res in
+        try app.test(.GET, baseURI + "sort-by=earliest-deadline&date-delimiter=\(farAwayDate)") { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([Task].self)
             XCTAssertEqual(results.count, 0)
@@ -237,14 +237,14 @@ final class AppTests: XCTestCase {
 
         let mediumFutureDate = Self.startDate.advanced(by: 9000)
         let mediumFuture = Self.formatter.string(from: mediumFutureDate)
-        try app.test(.GET, baseURI + "sort-by=earliest-deadline&date-delimeter=\(mediumFuture)") { res in
+        try app.test(.GET, baseURI + "sort-by=earliest-deadline&date-delimiter=\(mediumFuture)") { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([Task].self)
             XCTAssertEqual(results.count, 1)
             XCTAssertGreaterThan(results[0].deadlineDate, mediumFutureDate)
         }
 
-        let latestNow = baseURI + "sort-by=latest-start&date-delimeter=\(Self.formatter.string(from: Self.startDate))"
+        let latestNow = baseURI + "sort-by=latest-start&date-delimiter=\(Self.formatter.string(from: Self.startDate))"
         try app.test(.GET, latestNow) { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([Task].self)
@@ -256,7 +256,7 @@ final class AppTests: XCTestCase {
 
         let mediumPastDate = Self.startDate.advanced(by: -75)
         let mediumPast = Self.formatter.string(from: mediumPastDate)
-        try app.test(.GET, baseURI + "sort-by=latest-start&date-delimeter=\(mediumPast)") { res in
+        try app.test(.GET, baseURI + "sort-by=latest-start&date-delimiter=\(mediumPast)") { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([Task].self)
             XCTAssertEqual(results.count, 1)
@@ -264,7 +264,7 @@ final class AppTests: XCTestCase {
         }
 
         let distantPast = Self.formatter.string(from: Date.distantPast)
-        try app.test(.GET, baseURI + "sort-by=latest-start&date-delimeter=\(distantPast)") { res in
+        try app.test(.GET, baseURI + "sort-by=latest-start&date-delimiter=\(distantPast)") { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([Task].self)
             XCTAssertEqual(results.count, 0)
@@ -300,7 +300,7 @@ final class AppTests: XCTestCase {
 
         let mediumFutureDate = Self.startDate.advanced(by: 9000)
         let mediumFuture = Self.formatter.string(from: mediumFutureDate)
-        try app.test(.GET, baseURI + "sort-by=earliest-deadline&date-delimeter=\(mediumFuture)") { res in
+        try app.test(.GET, baseURI + "sort-by=earliest-deadline&date-delimiter=\(mediumFuture)") { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([SponsorshipContent].self)
             XCTAssertEqual(results.count, 1)
@@ -317,7 +317,7 @@ final class AppTests: XCTestCase {
 
         let mediumPastDate = Self.startDate.advanced(by: -75)
         let mediumPast = Self.formatter.string(from: mediumPastDate)
-        try app.test(.GET, baseURI + "sort-by=latest-start&date-delimeter=\(mediumPast)") { res in
+        try app.test(.GET, baseURI + "sort-by=latest-start&date-delimiter=\(mediumPast)") { res in
             XCTAssertEqual(res.status, .ok)
             let results = try res.content.decode([SponsorshipContent].self)
             XCTAssertEqual(results.count, 1)

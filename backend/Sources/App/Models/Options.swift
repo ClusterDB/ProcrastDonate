@@ -19,7 +19,7 @@ struct MonetaryValue: Codable, Equatable {
     }
 }
 
-/// Options determining the sort / limit / delimeters of a task or sponsorship based query.
+/// Options determining the sort / limit / delimiters of a task or sponsorship based query.
 struct QueryOptions: Content {
     enum SortBy: String, Codable {
         /// Items will be returned in order from earliest deadline to latest, with the date delimiter determining
@@ -42,31 +42,25 @@ struct QueryOptions: Content {
 
     /// Either the latest possible start date or the earliest possible deadline, depending on sortBy.
     /// Must be a valid ISO-8601 formatted string.
-    let dateDelimeter: Date?
+    let dateDelimiter: Date?
 
     enum CodingKeys: String, CodingKey {
         case activeOnly = "active-only"
         case limit
         case sortBy = "sort-by"
-        case dateDelimeter = "date-delimeter"
+        case dateDelimiter = "date-delimiter"
     }
 
     func updateFilter(_ filter: inout BSONDocument, deadlinePrefix: String = "", startPrefix: String = "") throws {
         let startDate = Date()
         // this value will be used as either the latest start date or the earliest deadline, depending on sortBy
-        let dateDelimeter = self.dateDelimeter ?? startDate
+        let dateDelimiter = self.dateDelimiter ?? startDate
 
         switch self.sortBy {
         case .latestStart:
-            guard dateDelimeter <= startDate else {
-                throw MyError(description: "when sorting by latestStart, delimeter must be in past")
-            }
-            filter["\(startPrefix)startDate"] = ["$lt": .datetime(dateDelimeter)]
+            filter["\(startPrefix)startDate"] = ["$lt": .datetime(dateDelimiter)]
         case .earliestDeadline:
-            guard dateDelimeter >= startDate else {
-                throw MyError(description: "when sorting by earliestDeadline, delimeter must be in future")
-            }
-            filter["\(deadlinePrefix)deadlineDate"] = ["$gt": .datetime(dateDelimeter)]
+            filter["\(deadlinePrefix)deadlineDate"] = ["$gt": .datetime(dateDelimiter)]
         }
 
         if self.activeOnly == true {
@@ -77,9 +71,8 @@ struct QueryOptions: Content {
             case .latestStart:
                 filter["\(deadlinePrefix)deadlineDate"] = ["$gt": .datetime(Date())]
             case .earliestDeadline:
-                // if we're sorting by earliest deadline, filter already guarantees we're only looking at
-                // active tasks
-                break
+                // ensure we don't relax the date restriction accidentally
+                filter["\(deadlinePrefix)deadlineDate"] = ["$gt": .datetime(max(Date(), dateDelimiter))]
             }
         }
     }
