@@ -31,9 +31,13 @@ struct TaskListView: View {
             }
         })
         .navigationBarTitle("Tasks", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: { showingNewTaskSheet = true }) {
-            Image(systemName: "plus.circle.fill")
-                .renderingMode(.original)
+        .navigationBarItems(
+            leading: Button(action: loadTasks) {
+                Image(systemName: "arrow.clockwise.circle.fill")
+            },
+            trailing: Button(action: { showingNewTaskSheet = true }) {
+                Image(systemName: "plus.circle.fill")
+                    .renderingMode(.original)
         })
     }
     
@@ -79,6 +83,7 @@ struct TaskListView: View {
     func saveTask() {
         // TODO: Remove once we have user management
         newTask.user = User.sample._id
+        newTask.charity = Charity.sample._id
         if state.localMode {
             tasks.append(newTask)
         } else {

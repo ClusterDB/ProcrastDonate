@@ -13,7 +13,7 @@ struct Tag: View {
     var delete: () -> Void = {}
     
     private enum Dimensions {
-        static let noPadding: CGFloat = 4.0
+        static let noPadding: CGFloat = 0.0
         static let smallPadding: CGFloat = 4.0
         static let mediumPadding: CGFloat = 8.0
     }

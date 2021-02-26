@@ -11,7 +11,7 @@ import SwiftBSON
 struct CharityView: View {
     @EnvironmentObject var state: AppState
     
-    @Binding var charityID: BSONObjectID?
+    @Binding var charityID: BSONObjectID
     
     @State var charities = [Charity]()
     @State var charityNames = [String]()
@@ -35,7 +35,7 @@ struct CharityView: View {
         }
         .onAppear(perform: loadCharities)
         .onChange(of: charityID, perform: { value in
-            selectedCharity = charities.first(where: { $0._id == value })
+            selectedCharity = charities.first(where: { $0._id == value }) ?? .sample
         })
     }
     
@@ -46,13 +46,13 @@ struct CharityView: View {
             // TODO: Fetch from backend
             charities = Charity.samples
         }
-        selectedCharity = charities.first(where: { $0._id == charityID })
+        selectedCharity = charities.first(where: { $0._id == charityID }) ?? .sample
     }
 }
 
 struct CharityView_Previews: PreviewProvider {
     static var previews: some View {
-        CharityView(charityID: .constant(Charity.sample3._id))
+        CharityView(charityID: .constant(Charity.sample3._id), selectedCharity: Charity.sample)
             .environmentObject(AppState())
     }
 }

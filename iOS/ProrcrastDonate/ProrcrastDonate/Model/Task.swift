@@ -20,7 +20,7 @@ class Task: ObservableObject, Identifiable, Codable {
     @Published var deadlineDate = Date().addingTimeInterval(86400)
     @Published var donateOnFailure = false
     @Published var donationAmount = Donation()
-    @Published var charity: BSONObjectID?
+    @Published var charity = BSONObjectID()
     @Published var tags = [String]()
     
     var id: String { _id.description }
@@ -40,7 +40,7 @@ class Task: ObservableObject, Identifiable, Codable {
         deadlineDate: Date,
         donateOnFailure: Bool,
         donationAmount: Donation,
-        charity: BSONObjectID? = nil,
+        charity: BSONObjectID,
         tags: [String]
     ) {
         self.init()
@@ -89,13 +89,13 @@ class Task: ObservableObject, Identifiable, Codable {
         deadlineDate = try container.decode(Date.self, forKey: .deadlineDate)
         donateOnFailure = try container.decode(Bool.self, forKey: .donateOnFailure)
         donationAmount = try container.decode(Donation.self, forKey: .donationAmount)
-        charity = try container.decodeIfPresent(BSONObjectID.self, forKey: .charity)
+        charity = try container.decode(BSONObjectID.self, forKey: .charity)
         tags = try container.decode([String].self, forKey: .tags)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(_id, forKey: ._id)
+        try container.encode(_id, forKey: ._id)
         try container.encode(title, forKey: .title)
 //        try container.encode(user, forKey: .user)
         try container.encode(descriptionText, forKey: .descriptionText)
@@ -106,7 +106,7 @@ class Task: ObservableObject, Identifiable, Codable {
         try container.encode(deadlineDate, forKey: .deadlineDate)
         try container.encode(donateOnFailure, forKey: .donateOnFailure)
         try container.encode(donationAmount, forKey: .donationAmount)
-        try container.encodeIfPresent(charity, forKey: .charity)
+        try container.encode(charity, forKey: .charity)
         try container.encode(tags, forKey: .tags)
     }
 }

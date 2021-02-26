@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftBSON
 
 struct TaskCard: View {
     @EnvironmentObject var state: AppState
@@ -60,7 +61,7 @@ struct TaskCard: View {
     
     func sendCompletion() {
         action()
-        guard let encoded = try? JSONEncoder().encode("mark-as-completed") else {
+        guard let encoded = try? ExtendedJSONEncoder().encode("mark-as-completed") else {
             print("Failed to encode completion request")
             return
         }

@@ -241,6 +241,7 @@ extension Task: Samplable {
             deadlineDate: Date().addingTimeInterval(226400),
             donateOnFailure: false,
             donationAmount: .sample2,
+            charity: Charity.sample3._id,
             tags: ["animals", "creepy", "dark", "spooky", "sound", "flying", "animal", "rodent"])
     }
     static var sample3: Task {

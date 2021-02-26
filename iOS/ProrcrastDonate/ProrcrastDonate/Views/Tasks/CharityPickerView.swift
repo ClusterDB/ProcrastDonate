@@ -11,7 +11,7 @@ import SwiftBSON
 struct CharityPickerView: View {
     @EnvironmentObject var state: AppState
     
-    @Binding var charityID: BSONObjectID?
+    @Binding var charityID: BSONObjectID
     
     @State var charities = [Charity]()
     @State var charityNames = [String]()
@@ -24,7 +24,7 @@ struct CharityPickerView: View {
             }
         }
         .onChange(of: selectedCharityName, perform: { value in
-            charityID = charities.first(where: { $0.name == value })?._id
+            charityID = charities.first(where: { $0.name == value })?._id ?? Charity.sample._id
         })
         .onAppear(perform: loadCharities)
     }
