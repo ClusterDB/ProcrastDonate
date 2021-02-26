@@ -30,7 +30,7 @@ struct TaskListView: View {
                 saveTask()
             }
         })
-        .navigationBarTitle("Tasks", displayMode: .inline)
+        .navigationBarTitle("ProcrastDonate Tasks", displayMode: .inline)
         .navigationBarItems(
             leading: Button(action: loadTasks) {
                 Image(systemName: "arrow.clockwise.circle.fill")
@@ -47,7 +47,7 @@ struct TaskListView: View {
             sort()
         } else {
             let address =
-                "\(state.APIURL)users/\(User.sample._id.description)/tasks?sort-by=earliest-deadline&date-delimiter=3000-10-05T14:48:00.000Z"
+                "\(state.APIURL)users/\(User.sample._id.description)/tasks?sort-by=earliest-deadline&date-delimiter=2000-10-05T14:48:00Z"
             guard let url = URL(string: address) else {
                 print("Invalid URL")
                 return
