@@ -236,7 +236,7 @@ final class AppTests: XCTestCase {
         }
         try configure(app)
 
-        let baseURI = "users/\(AppTests.userID.objectIDValue!.hex)/sponsorships?"
+        let baseURI = "users/\(AppTests.userID1.objectIDValue!.hex)/sponsorships?"
 
         try app.test(.GET, baseURI + "sort-by=earliest-deadline") { res in
             XCTAssertEqual(res.status, .ok)
