@@ -48,3 +48,8 @@ extension Date {
         return formatter.string(from: self)
     }
 }
+
+class DateFormat {
+    static let formatter = ISO8601DateFormatter()
+//    static let 
+}
